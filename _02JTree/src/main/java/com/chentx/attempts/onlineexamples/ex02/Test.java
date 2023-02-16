@@ -7,7 +7,7 @@ package com.chentx.attempts.onlineexamples.ex02;
  */
 
 public class Test {
-    public static void main(String args[]){
-        TreeWin win = new TreeWin();
+    public static void main(String[] args){
+        new TreeWin();  // TreeWin win =
     }
 }

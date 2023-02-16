@@ -97,8 +97,8 @@ public class TreeWin extends JFrame implements TreeSelectionListener{
         jisuanji_jisuanji.add(jisuanji1);
         jisuanji_jisuanji.add(jisuanji2);
 
-        tree=new JTree(root);                                   //用root做根的树组件
-        tree.addTreeSelectionListener(this);                    //监视树组件上的事件
+        tree=new JTree(root);                                   // 用root做根的树组件
+        tree.addTreeSelectionListener(this);                    // 监视树组件上的事件
         showText=new JTextArea();
         setLayout(new GridLayout(1,2));
         add(new JScrollPane(tree));
@@ -112,7 +112,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener{
         DefaultMutableTreeNode node=
                 (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
         if(node.isLeaf()){
-            Book s=(Book)node.getUserObject();                //得到节点中存放的对象
+            Book s=(Book)node.getUserObject();                // 得到节点中存放的对象
             showText.append(s.name+","+s.chubanshe+"\n");
         }
         else{
