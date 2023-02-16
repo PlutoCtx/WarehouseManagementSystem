@@ -1,25 +1,25 @@
-package com.chentx.attempts;
-
-/**
- * @author MaxBrooks chentingxian195467@163.com
- * @version 2023/2/15 20:02
- * @since JDK17
- */
+package com.chentx.attempts.attempt01;
 
 import java.sql.*;
 import java.util.logging.Logger;
 
-public class Query {
+/**
+ * 数据库连接
+ *
+ * @author MaxBrooks chentingxian195467@163.com
+ * @version 2023/2/16 14:27
+ * @since JDK17
+ */
+
+public class DBConnection {
     /**
      * 数据库名
      */
     String databaseName = "warehousemanagementsystem";
-
     /**
      * SQL语句
      */
-    String sql;
-
+    String sql = "SELECT * FROM clggb";
     /**
      * 全部字段（列）名
      */
@@ -27,7 +27,7 @@ public class Query {
     /**
      * 查询到的记录
      */
-    String [][] record;
+    String [][] records;
     String DB_URL= "jdbc:mysql://localhost:3306/" + databaseName + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     static final String USER = "root";
     static final String PASSWORD = "Yuhuangtao111";
@@ -35,7 +35,7 @@ public class Query {
     /**
      * 加载JDBC-MySQL驱动
      */
-    public Query() {
+    public DBConnection() {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch(Exception e){
@@ -43,16 +43,13 @@ public class Query {
         }
     }
 
-    public void setSql(String sql) {
-        this.sql = sql;
-    }
 
-//    public void setDatabaseName(String databaseName) {
-//        this.databaseName = databaseName;
-//    }
-
+    /**
+     * 获取数据库表中字段名
+     * @return  columnName
+     */
     public String[] getColumnName() {
-        if(columnName ==null ){
+        if(columnName == null ){
             // 先查询记录
             Logger.getGlobal().info("\u5148\u67E5\u8BE2\u8BB0\u5F55");
             // 原本是 return null
@@ -61,13 +58,19 @@ public class Query {
         return columnName;
     }
 
+    /**
+     * 获取除字段名外的所有记录数据
+     * @return [][] records
+     */
     public String[][] getRecord() {
         startQuery();
-        return record;
+        return records;
     }
 
 
-
+    /**
+     * 获取数据库中的所有数据，并与getRecord()方法共同获取除字段名外的所有记录数据
+     */
     private void startQuery() {
         Connection con;
         Statement stmt;
@@ -89,14 +92,14 @@ public class Query {
             resultSet.last();
 
             // 结果集中的记录数目
-            int recordAmount =resultSet.getRow();
-            record = new String[recordAmount][columnCount];
-            int i=0;
+            int recordAmount = resultSet.getRow();
+            records = new String[recordAmount][columnCount];
+            int i = 0;
             resultSet.beforeFirst();
             while(resultSet.next()) {
                 for(int j=1;j<=columnCount;j++){
                     // 第i条记录，放入二维数组的第i行
-                    record[i][j-1]=resultSet.getString(j);
+                    records[i][j-1]=resultSet.getString(j);
                 }
                 i++;
             }
@@ -105,7 +108,5 @@ public class Query {
             Logger.getGlobal().warning("请输入正确的表名：\n" + e);
         }
     }
+
 }
-
-
-

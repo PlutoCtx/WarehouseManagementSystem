@@ -46,7 +46,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
         tree=new JTree(root);
         // 监视树组件上的事件
         tree.addTreeSelectionListener(this);
-        showText=new JTextArea();
+        showText = new JTextArea();
         setLayout(new GridLayout(1,2));
         add(new JScrollPane(tree));
         add(new JScrollPane(showText));
@@ -60,7 +60,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
     public void valueChanged(TreeSelectionEvent e){
         DefaultMutableTreeNode node=
                 (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-        if(node == null) {
+        if (node == null) {
             return;
         }
         if(node.isLeaf()){
