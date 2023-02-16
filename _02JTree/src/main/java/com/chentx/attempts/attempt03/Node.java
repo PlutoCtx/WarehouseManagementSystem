@@ -1,5 +1,7 @@
 package com.chentx.attempts.attempt03;
 
+import lombok.Data;
+
 import java.util.logging.Logger;
 
 /**
@@ -8,65 +10,55 @@ import java.util.logging.Logger;
  * @since JDK17
  */
 
+@Data
 public class Node {
+    /**
+     * 货物名称
+     */
     String name;
-    String ggxh;
-    String hh;
-    String dw;
-    String kcs;
-    String pjj;
-    String kczj;
+    /**
+     * 型号
+     */
+    String model;
+    /**
+     * 货号
+     */
+    String itemNumber;
+    /**
+     * 货物单位
+     */
+    String unit;
+    /**
+     * 库存总数
+     */
+    String inventoryNumber;
+    /**
+     * 平均价
+     */
+    String averagePrice;
+    /**
+     * 库存总价
+     */
+    String totalInventoryPrice;
 
     Node(String[] s) {
-        setname(s[0]);
-        setggxh(s[1]);
-        sethh(s[2]);
-        setdw(s[3]);
-        setkcs(s[4]);
-        setpjj(s[5]);
-        setkczj(s[6]);
+        setName(s[0]);
+        setModel(s[1]);
+        setItemNumber(s[2]);
+        setUnit(s[3]);
+        setInventoryNumber(s[4]);
+        setAveragePrice(s[5]);
+        setTotalInventoryPrice(s[6]);
     }
 
     @Override
     public String toString() {
-
-        String str = name + "," + ggxh;
-
+        String str = name + "," + model;
         if (str.endsWith(",")){
             return name;
         }
         return str;
-
-
-//        if (ggxh == null){
-//            return name;
-//        }else {
-//            Logger.getGlobal().info(ggxh);
-//            return name + "," + ggxh;
-//        }
     }
 
-
-    public void setname(String s) {
-        name=s;
-    }
-    public void setggxh(String s) {
-        ggxh=s;
-    }
-    public void sethh(String s) {
-        hh=s;
-    }
-    public void setdw(String s) {
-        dw=s;
-    }
-    public void setkcs(String s) {
-        kcs=s;
-    }
-    public void setpjj(String s) {
-        pjj=s;
-    }
-    public void setkczj(String s) {
-        kczj=s;
-    }
 }
 
