@@ -29,9 +29,9 @@ public class BookAddInterFrm extends JInternalFrame {
     private JRadioButton manJrb;
     private JRadioButton femaleJrb;
 
-    private DBUtil dbUtil=new DBUtil();
-    private BookTypeDao bookTypeDao=new BookTypeDao();
-    private BookDao bookDao=new BookDao();
+    private DBUtil dbUtil = new DBUtil();
+    private BookTypeDao bookTypeDao = new BookTypeDao();
+    private BookDao bookDao = new BookDao();
 
 
     /**
@@ -82,7 +82,6 @@ public class BookAddInterFrm extends JInternalFrame {
                 bookAddActionPerformed(e);
             }
         });
-//        button.setIcon(new ImageIcon(BookAddInterFrm.class.getResource("/images/add.png")));
 
         JButton button1 = new JButton("\u91CD\u7F6E");
         button1.addActionListener(new ActionListener() {
@@ -91,7 +90,7 @@ public class BookAddInterFrm extends JInternalFrame {
                 resetValueActionPerformed(e);
             }
         });
-//        button1.setIcon(new ImageIcon(BookAddInterFrm.class.getResource("/images/reset.png")));
+
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
             groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -178,7 +177,7 @@ public class BookAddInterFrm extends JInternalFrame {
 
     /**
      * 重置事件处理
-     * @param e
+     * @param e 意外
      */
     private void resetValueActionPerformed(ActionEvent e) {
         this.resetValue();
@@ -187,46 +186,57 @@ public class BookAddInterFrm extends JInternalFrame {
 
     /**
      * 图书添加事件处理
-     * @param evt
+     * @param evt   事件
      */
     private void bookAddActionPerformed(ActionEvent evt) {
-        String bookName= this.bookNameTxt.getText();
-        String author=this.authorTxt.getText();
-        String price=this.priceTxt.getText();
-        String bookDesc=this.bookDescTxt.getText();
+        String bookName = this.bookNameTxt.getText();
+        String author = this.authorTxt.getText();
+        String price = this.priceTxt.getText();
+        String bookDesc = this.bookDescTxt.getText();
 
+        /*
+            图书名称不能为空
+         */
         if(StringUtil.isEmpty(bookName)){
             JOptionPane.showMessageDialog(null, "图书名称不能为空");
             return;
         }
 
+        /*
+            图书作者不能为空
+         */
         if(StringUtil.isEmpty(author)){
             JOptionPane.showMessageDialog(null, "图书作者不能为空");
             return;
         }
 
+        /*
+            图书价格不能为空
+         */
         if(StringUtil.isEmpty(price)){
             JOptionPane.showMessageDialog(null, "图书价格不能为空");
             return;
         }
 
-        String sex="";
+        String sex = "";
         if(manJrb.isSelected()){
-            sex="男";
+            sex = "男";
         }else if(femaleJrb.isSelected()){
-            sex="女";
+            sex = "女";
+        }else {
+            sex = "unknown";
         }
 
-        BookType bookType=(BookType) bookTypeJcb.getSelectedItem();
-        int bookTypeId=bookType.getId();
+        BookType bookType = (BookType) bookTypeJcb.getSelectedItem();
+        int bookTypeId = bookType.getId();
 
-        Book book=new Book(bookName,author, sex, Float.parseFloat(price) , bookTypeId,  bookDesc);
+        Book book = new Book(bookName,author, sex, Float.parseFloat(price) , bookTypeId,  bookDesc);
 
-        Connection con=null;
+        Connection con = null;
         try{
-            con=dbUtil.getConnection();
-            int addNum=bookDao.add(con, book);
-            if(addNum==1){
+            con = dbUtil.getConnection();
+            int addNum = bookDao.add(con, book);
+            if(addNum == 1){
                 JOptionPane.showMessageDialog(null, "图书添加成功");
                 resetValue();
             }else{
@@ -267,13 +277,13 @@ public class BookAddInterFrm extends JInternalFrame {
      * 初始化图书类别下拉框
      */
     private void fillBookType(){
-        Connection con=null;
-        BookType bookType=null;
+        Connection con = null;
+        BookType bookType = null;
         try{
-            con=dbUtil.getConnection();
-            ResultSet rs=bookTypeDao.list(con, new BookType());
+            con = dbUtil.getConnection();
+            ResultSet rs = bookTypeDao.list(con, new BookType());
             while(rs.next()){
-                bookType=new BookType();
+                bookType = new BookType();
                 bookType.setId(rs.getInt("id"));
                 bookType.setBookTypeName(rs.getString("bookTypeName"));
                 this.bookTypeJcb.addItem(bookType);

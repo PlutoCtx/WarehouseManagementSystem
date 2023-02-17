@@ -11,7 +11,8 @@
     <modules>
         <module>_01JTable</module>
         <module>_02JTree</module>
-        <module>_MainSub-Interface</module>
+        <module>_03MainSub-Interface</module>
+        <module>_Modules</module>
     </modules>
 
     <properties>

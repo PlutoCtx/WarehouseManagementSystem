@@ -5,12 +5,8 @@ q
 A_02JTree/src/main/java/com/chentx/attempts/attempt01/TreeWin.java,e\0\e08f6eb536a18122d0f9a94798cbc2b159567052
 v
 F_02JTree/src/main/java/com/chentx/attempts/attempt01/DBConnection.java,8\0\80d8aa728037f1375f241ec62ebfa51efc4ccec1
-e
-5_01JTable/src/main/java/com/chentx/attempts/Main.java,9\4\942adb5de45f00862c106f606eaec5c553dd8791
 m
 =_02JTree/src/main/java/com/chentx/attempts/examples/Main.java,f\4\f4cc269c2c9c0917756132d37aa796014fc7a89d
-f
-6_01JTable/src/main/java/com/chentx/attempts/Query.java,c\d\cde10f1c6fe5788a53e113ccf4df0e72307e7ddc
 u
 E_02JTree/src/main/java/com/chentx/attempts/attempt02/DBConnector.java,3\e\3e7393cfd3530055ae17cf3d1242a51168fbefee
 n
