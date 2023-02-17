@@ -1,8 +1,6 @@
-package com.chentx.attempts.attempt03;
+package com.chentx.attempts.attempt03_suc;
 
 import lombok.Data;
-
-import java.util.logging.Logger;
 
 /**
  * @author MaxBrooks chentingxian195467@163.com
