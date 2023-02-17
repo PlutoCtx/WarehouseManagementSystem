@@ -1,4 +1,4 @@
-package com.chentx.attempts.attempt03;
+package com.chentx.attempts.attempt03_suc;
 
 import java.sql.*;
 import java.util.logging.Logger;
