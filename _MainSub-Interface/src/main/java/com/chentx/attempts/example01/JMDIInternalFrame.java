@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  * @since JDK17
  */
 
-
 public class JMDIInternalFrame extends JFrame implements ActionListener {
     JDesktopPane desktopPane;
     int count = 1;
