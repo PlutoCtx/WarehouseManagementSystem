@@ -28,7 +28,7 @@ public class Query {
     String [][] record;
     String DB_URL= "jdbc:mysql://localhost:3306/" + databaseName + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     static final String USER = "root";
-    static final String PASSWORD = "Yuhuangtao111";
+    static final String PASSWORD = "Shangxiao111";
 
     /**
      * 加载JDBC-MySQL驱动

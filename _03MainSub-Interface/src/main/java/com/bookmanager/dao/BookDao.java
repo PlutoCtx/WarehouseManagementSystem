@@ -19,8 +19,8 @@ public class BookDao {
      * 添加图书
      * @param connection    连接数据库
      * @param book  书籍
-     * @return
-     * @throws Exception
+     * @return  the number of being effected rows
+     * @throws Exception how do I know
      */
     public int add(Connection connection, Book book)throws Exception{
         String sql = "INSERT INTO t_book VALUES (null, ?, ?, ?, ?, ?, ?)";
@@ -38,19 +38,19 @@ public class BookDao {
      * 查找书籍
      * @param connection    连接数据库
      * @param book  书籍
-     * @return
-     * @throws Exception
+     * @return  the number of being effected rows
+     * @throws Exception    how do I know
      */
     public ResultSet list(Connection connection, Book book)throws Exception{
-        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM t_book b,t_bookType bt WHERE b.bookTypeId = bt.id");
+        StringBuilder stringBuffer = new StringBuilder("SELECT * FROM t_book b,t_bookType bt WHERE b.bookTypeId = bt.id");
         if(StringUtil.isNotEmpty(book.getBookName())){
-            stringBuffer.append(" and b.bookName like '%"+book.getBookName()+"%'");
+            stringBuffer.append(" and b.bookName like '%").append(book.getBookName()).append("%'");
         }
         if(StringUtil.isNotEmpty(book.getAuthor())){
-            stringBuffer.append(" and b.author like '%"+book.getAuthor()+"%'");
+            stringBuffer.append(" and b.author like '%").append(book.getAuthor()).append("%'");
         }
         if(book.getBookTypeId() != null && book.getBookTypeId()!=-1){
-            stringBuffer.append(" and b.bookTypeId="+book.getBookTypeId());
+            stringBuffer.append(" and b.bookTypeId=").append(book.getBookTypeId());
         }
         PreparedStatement preparedStatement = connection.prepareStatement(stringBuffer.toString());
         return preparedStatement.executeQuery();
@@ -92,7 +92,13 @@ public class BookDao {
     }
 
 
-
+    /**
+     * 查看书籍分类下的书籍数
+     * @param connection    连接数据库
+     * @param bookTypeId    书籍分类
+     * @return  是否存在书籍对应分类下的书籍
+     * @throws Exception    how do I know
+     */
     public boolean existBookByBookTypeId(Connection connection,String bookTypeId)throws Exception{
         String sql="SELECT * FROM t_book WHERE bookTypeId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);

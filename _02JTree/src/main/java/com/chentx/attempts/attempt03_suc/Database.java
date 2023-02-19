@@ -49,7 +49,7 @@ public class Database {
         ResultSet rs;
         String uri = "jdbc:mysql://localhost:3306/" + databaseName;
         try {
-            con = DriverManager.getConnection(uri,"root","Yuhuangtao111");
+            con = DriverManager.getConnection(uri,"root","Shangxiao111");
             sql = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             rs = sql.executeQuery(SQL);
             ResultSetMetaData metaData = rs.getMetaData();

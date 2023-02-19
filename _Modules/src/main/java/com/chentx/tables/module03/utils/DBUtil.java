@@ -1,21 +1,26 @@
-package com.bookmanager.utils;
+package com.chentx.tables.module03.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * 数据库连接类
- *
- * @author Max chenmochen1954@163.com
- * since jdk17
- * @version 2022/12/18 23:13
- */
-public class DBUtil {
+ * database connection
+ * @author MaxBrooks chentingxian195467@163.com
+ * @since JDK17
+ * @version 2023/2/18 17:32
+*/
 
+public class DBUtil {
     /**
-     * 数据库
+     * 数据库链接，最后一段rewriteBatchedStatements=true表示开启批处理
      */
-    private String url = "jdbc:mysql://localhost:3306/sys?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private String url = "jdbc:mysql://localhost:3306/warehousemanagementsystem?" +
+            "useUnicode=true" +
+            "&characterEncoding=utf8" +
+            "&useSSL=false" +
+            "&serverTimezone=UTC" +
+            "&allowPublicKeyRetrieval=true" +
+            "&rewriteBatchedStatements=true";
     /**
      * 用户名
      */
@@ -50,5 +55,7 @@ public class DBUtil {
             connection.close();
         }
     }
-}
 
+
+
+}

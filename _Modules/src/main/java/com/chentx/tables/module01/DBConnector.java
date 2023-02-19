@@ -2,6 +2,9 @@ package com.chentx.tables.module01;
 
 import lombok.Data;
 
+import java.sql.*;
+import java.util.logging.Logger;
+
 /**
  * 数据库连接类
  *
@@ -12,27 +15,21 @@ import lombok.Data;
 
 @Data
 public class DBConnector {
-    /**
-     * 数据库名
-     */
-    String databaseName = "warehousemanagementsystem";
-    /**
-     * SQL语句
-     */
-    String sql;
-    /**
-     * 全部字段（列）名
-     */
-    String [] columnName;
-    /**
-     * 查询到的记录
-     */
-    String [][] record;
-    String DB_URL= "jdbc:mysql://localhost:3306/" + databaseName + "?useSSL=true&serverTimezone=GMT&characterEncoding=utf-8";
-    static final String USER = "root";
-    static final String PASSWORD = "Yuhuangtao111";
 
+    public static Connection connectionDB(String DBName, String id, String p){
+        Connection conn = null;
+        String DB_URL= "jdbc:mysql://localhost:3306/" + DBName + "?useSSL=true&serverTimezone=GMT&characterEncoding=utf-8";
 
+        new DBConnector();
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, id, p);
+        } catch (SQLException e) {
+            Logger.getGlobal().info("" + e);
+        }
+        return conn;
+
+    }
 
     /**
      * 加载JDBC-MySQL驱动
@@ -44,8 +41,6 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
-
-
 
 
 }
