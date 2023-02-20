@@ -1,6 +1,8 @@
 package com.chentx.tables.module03.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -13,56 +15,64 @@ import java.util.Date;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
     /**
      * id
      */
-    private final int id;
+    private int id;
     /**
      * 职工号
      */
-    private final String employeeNumber;
+    private String employeeNumber;
     /**
      * 姓名
      */
-    private final String name;
+    private String name;
+    /**
+     * 密码
+     */
+    private String password;
+
     /**
      * 职位，仓管员、经理
      */
-    private final String position;
+    private String position;
     /**
      * 是否在职，默认在职
      */
-    private final Byte inOffice;
+    private Byte inOffice;
     /**
      * 性别
      */
-    private final Byte sex;
+    private Byte sex;
     /**
      * 年龄
      */
-    private final int age;
+    private int age;
     /**
      * 联系方式
      */
-    private final String contact;
+    private String contact;
     /**
      * 薪资
      */
-    private final double salary;
+    private double salary;
     /**
      * 入职日期，yyyy-MM-dd，无法默认设置当前日期
      */
-    private final Date dateOfEntry;
+    private Date dateOfEntry;
     /**
      * 离职日期，yyyy-MM-dd，无法默认设置当前日期
      */
-    private final Date dateOfDeparture;
+    private Date dateOfDeparture;
 
     public Employee(EmployeeBuilder employeeBuilder) {
         this.id = employeeBuilder.id;
         this.employeeNumber = employeeBuilder.employeeNumber;
         this.name = employeeBuilder.name;
+        this.password = employeeBuilder.password;
         this.position = employeeBuilder.position;
         this.inOffice = employeeBuilder.inOffice;
         this.sex = employeeBuilder.sex;
@@ -86,6 +96,10 @@ public class Employee {
          * 姓名
          */
         private String name;
+        /**
+         * 密码
+         */
+        private String password;
         /**
          * 职位，仓管员、经理
          */
@@ -128,6 +142,16 @@ public class Employee {
 
         private EmployeeBuilder(String employeeNumber){
             this.employeeNumber = employeeNumber;
+        }
+
+        /**
+         * 方便登录时使用
+         * @param employeeNumber
+         * @param password
+         */
+        private EmployeeBuilder(String employeeNumber, String password) {
+            this.employeeNumber = employeeNumber;
+            this.password = password;
         }
 
         /**
@@ -175,6 +199,13 @@ public class Employee {
          */
         public EmployeeBuilder withName(String name) {
             this.name = name;
+            return this;
+        }
+        /**
+         * 添加密码
+         */
+        public EmployeeBuilder withPassword(String password) {
+            this.password = password;
             return this;
         }
         /**

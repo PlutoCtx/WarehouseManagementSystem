@@ -8,8 +8,10 @@ class EmployeeTest {
         Employee employee = Employee.EmployeeBuilder.create("server").withAge(45).build();
         System.out.println(employee.getEmployeeNumber() + "  " + employee.getAge());
 
+
         Employee employeeOne = Employee.EmployeeBuilder.anEmployee().withAge(46).build();
 
+        System.out.println(employeeOne.getAge());
 
     }
 

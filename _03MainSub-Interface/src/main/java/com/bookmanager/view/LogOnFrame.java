@@ -54,7 +54,6 @@ public class LogOnFrame extends JFrame {
     public LogOnFrame(){
         //改变系统默认字体
         Font font = new Font("Dialog", Font.PLAIN, 12);
-        // java.util.Enumeration keys = UIManager.getDefaults().keys();
         Enumeration<Object> keys = UIManager.getDefaults().keys();
         while (keys.hasMoreElements()){
             Object key = keys.nextElement();
@@ -101,7 +100,7 @@ public class LogOnFrame extends JFrame {
         btnNewButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginActionPerformed(e);
+                resetValueActionPerformed(e);
             }
         });
         btnNewButton2.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/reset.png"))));
@@ -177,7 +176,6 @@ public class LogOnFrame extends JFrame {
             if (currentUser != null){
                 dispose();
                 new MainFrame().setVisible(true);
-//                JOptionPane.showMessageDialog(null, "登录成功");
             }else {
                 JOptionPane.showMessageDialog(null, "用户名或密码错误");
             }

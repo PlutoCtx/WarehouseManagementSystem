@@ -5,8 +5,6 @@ r
 B_02JTree/src/main/java/com/chentx/attempts/attempt01/Material.java,2\8\288be5d593b6b08d3810d5e77d7654e153e2f6de
 r
 B_02JTree/src/main/java/com/chentx/attempts/attempt03_suc/Node.java,2\3\23ee355f3cfcd4448444c1d62e20d1989001f8cf
-v
-F_03MainSub-Interface/src/main/java/com/bookmanager/view/MainFrame.java,d\b\db612556b3f99414aeb4f77990cb4b6725a3598e
 ‡
 W_03MainSub-Interface/src/main/java/com/chentx/attempts/example01/JMDIInternalFrame.java,1\4\148805e8b9106368d44cdcc65c71db0ea79b16b2
 L
