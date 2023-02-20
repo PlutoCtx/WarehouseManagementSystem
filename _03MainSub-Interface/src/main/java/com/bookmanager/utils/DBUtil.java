@@ -15,7 +15,12 @@ public class DBUtil {
     /**
      * 数据库
      */
-    private String url = "jdbc:mysql://localhost:3306/sys?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private String url = "jdbc:mysql://localhost:3306/sys" +
+            "?useUnicode=true" +
+            "&characterEncoding=utf8" +
+            "&useSSL=false" +
+            "&serverTimezone=UTC" +
+            "&allowPublicKeyRetrieval=true";
     /**
      * 用户名
      */

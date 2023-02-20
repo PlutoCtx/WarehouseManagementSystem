@@ -24,11 +24,9 @@ import java.util.Objects;
  * @version 2022/12/20 18:06
  */
 public class LogOnFrame extends JFrame {
-
     private JPanel contentPane;
     private JTextField userNameText;
     private JPasswordField passwordText;
-
     private DBUtil dbUtil = new DBUtil();
     private UserDao userDao = new UserDao();
 

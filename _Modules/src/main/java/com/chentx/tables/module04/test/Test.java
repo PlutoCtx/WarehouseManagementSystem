@@ -4,6 +4,7 @@ import com.chentx.tables.module04.dao.UserDao;
 import com.chentx.tables.module04.entity.User;
 
 import java.sql.Date;
+import java.util.logging.Logger;
 
 /**
  * @author MaxBrooks chentingxian195467@163.com
@@ -19,7 +20,7 @@ public class Test {
         user.setPassword("wmc123");
         user.setBirthday(new Date(System.currentTimeMillis()));
         UserDao userDao = new UserDao() ;
-        System.out.println(userDao.add(user));
+        Logger.getGlobal().info("info: " + userDao.add(user));
         userDao.closeConnection();
     }
 

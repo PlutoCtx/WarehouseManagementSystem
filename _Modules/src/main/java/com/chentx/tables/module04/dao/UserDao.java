@@ -1,6 +1,6 @@
 package com.chentx.tables.module04.dao;
 
-import com.chentx.tables.module04.baseDao.BaseDao;
+import com.chentx.tables.module04.basedao.BaseDao;
 import com.chentx.tables.module04.entity.User;
 
 import java.sql.PreparedStatement;

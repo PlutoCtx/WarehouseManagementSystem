@@ -35,22 +35,6 @@ public class BookTypeManageInterFrm extends JInternalFrame {
     private JTextField idTxt;
     private JTextField bookTypeNameTxt;
 
-//    /**
-//     * Launch the application.
-//     */
-//    public static void main(String[] args) {
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    BookTypeManageInterFrm frame = new BookTypeManageInterFrm();
-//                    frame.setVisible(true);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
     /**
      * Create the frame.
@@ -235,7 +219,7 @@ public class BookTypeManageInterFrm extends JInternalFrame {
                     JOptionPane.showMessageDialog(null, "当前图书类别下有图书，不能删除此类别");
                     return;
                 }
-                int deleteNum=bookTypeDao.delete(con, id);
+                int deleteNum=bookTypeDao.deleteById(con, id);
                 if(deleteNum==1){
                     JOptionPane.showMessageDialog(null, "删除成功");
                     this.resetValue();
@@ -256,7 +240,6 @@ public class BookTypeManageInterFrm extends JInternalFrame {
             }
         }
     }
-
 
     /**
      * 图书类别修改事件处理

@@ -13,8 +13,6 @@ import java.sql.ResultSet;
  * @version 2022/12/21 11:28
  */
 public class BookDao {
-
-
     /**
      * 添加图书
      * @param connection    连接数据库
@@ -22,7 +20,7 @@ public class BookDao {
      * @return  the number of being effected rows
      * @throws Exception how do I know
      */
-    public int add(Connection connection, Book book)throws Exception{
+    public int add(Connection connection, Book book) throws Exception{
         String sql = "INSERT INTO t_book VALUES (null, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, book.getBookName());
@@ -61,8 +59,8 @@ public class BookDao {
      * 删除书籍
      * @param connection    连接数据库
      * @param id 书籍id号
-     * @return
-     * @throws Exception
+     * @return  返回删除掉的记录数量
+     * @throws Exception    可能会无法删除
      */
     public int delete(Connection connection,String id)throws Exception{
         String sql="DELETE FROM t_book WHERE id = ?";
@@ -75,8 +73,8 @@ public class BookDao {
      *  更新书籍
      * @param connection    连接数据库
      * @param book  书籍
-     * @return
-     * @throws Exception
+     * @return  返回更新的记录数量
+     * @throws Exception    可能无法更新
      */
     public int update(Connection connection,Book book) throws Exception{
         String sql="UPDATE t_book SET bookName = ?, author = ?, sex = ?, price = ?, bookDesc = ?, bookTypeId = ? WHERE id = ?";

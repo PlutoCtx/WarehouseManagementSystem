@@ -33,7 +33,6 @@ public class DBUtil {
      * 驱动名称
      */
     private final String jdbcName = "com.mysql.cj.jdbc.Driver";
-
     /**
      * 获取数据库连接
      * @return  返回连接
@@ -55,7 +54,5 @@ public class DBUtil {
             connection.close();
         }
     }
-
-
 
 }

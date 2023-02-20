@@ -1,4 +1,4 @@
-package com.chentx.tables.module04.baseDao;
+package com.chentx.tables.module04.basedao;
 
 import com.chentx.tables.module04.utils.DBUtil;
 
@@ -11,7 +11,7 @@ import java.sql.Connection;
  */
 
 public class BaseDao<T> {
-    private DBUtil dbUtil = new DBUtil() ;
+    private DBUtil dbUtil = new DBUtil();
     public Connection connection = dbUtil.getConnection();
     public void closeConnection() {
         dbUtil.closeConnection();
