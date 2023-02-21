@@ -1,5 +1,7 @@
 package com.chentx.tables.module03.view;
 
+import javax.swing.*;
+
 /**
  * @author MaxBrooks chentingxian195467@163.com
  * @version 2023/2/20 20:12

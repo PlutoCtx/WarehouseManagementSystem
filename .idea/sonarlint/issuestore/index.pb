@@ -9,7 +9,5 @@ B_02JTree/src/main/java/com/chentx/attempts/attempt03_suc/Node.java,2\3\23ee355
 W_03MainSub-Interface/src/main/java/com/chentx/attempts/example01/JMDIInternalFrame.java,1\4\148805e8b9106368d44cdcc65c71db0ea79b16b2
 L
 _03MainSub-Interface/pom.xml,6\2\621f8ab53050447bfce5d34add4b42394df521fa
-€
-P_03MainSub-Interface/src/main/java/com/bookmanager/view/BookTypeAddInterFrm.java,6\d\6d80aef33886fad1aa814dd8ce4fcb83055138ab
 v
 F_03MainSub-Interface/src/main/java/com/bookmanager/model/BookType.java,7\b\7b5de8d0b2378ad5054c81abb96d01e13437cf54

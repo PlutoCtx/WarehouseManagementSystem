@@ -23,29 +23,23 @@ import java.util.Objects;
  */
 
 public class BookTypeAddInterFrm extends JInternalFrame {
-
+    /**
+     * 书籍类名
+     */
     private JTextField bookTypeNameTxt;
+    /**
+     * 书籍分类描述
+     */
     private JTextArea bookTypeDescTxt;
-
+    /**
+     * 数据库连接
+     */
     private DBUtil dbUtil=new DBUtil();
+    /**
+     * 注入书籍类处理类
+     */
     private BookTypeDao bookTypeDao=new BookTypeDao();
 
-//    /**
-//     * Launch the application.
-//     */
-//    public static void main(String[] args) {
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    BookTypeAddInterFrm frame = new BookTypeAddInterFrm();
-//                    frame.setVisible(true);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
     /**
      * Create the frame.
@@ -53,11 +47,12 @@ public class BookTypeAddInterFrm extends JInternalFrame {
     public BookTypeAddInterFrm() {
         setClosable(true);
         setIconifiable(true);
+        // 图书类别添加
         setTitle("\u56FE\u4E66\u7C7B\u522B\u6DFB\u52A0");
         setBounds(100, 100, 450, 300);
-
+        // 图书类别名称：
         JLabel lblNewLabel = new JLabel("\u56FE\u4E66\u7C7B\u522B\u540D\u79F0\uFF1A");
-
+        // 图书类别描述：
         JLabel lblNewLabel1 = new JLabel("\u56FE\u4E66\u7C7B\u522B\u63CF\u8FF0\uFF1A");
 
         bookTypeNameTxt = new JTextField();
@@ -66,22 +61,12 @@ public class BookTypeAddInterFrm extends JInternalFrame {
         bookTypeDescTxt = new JTextArea();
 
         JButton btnNewButton = new JButton("\u6DFB\u52A0");
-        btnNewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                bookTypeAddActionPerformed(e);
-            }
-        });
+        btnNewButton.addActionListener(e -> bookTypeAddActionPerformed(e));
         btnNewButton.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/add.png"))));
 
 
         JButton btnNewButton1 = new JButton("\u91CD\u7F6E");
-        btnNewButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resetValueActionPerformed(e);
-            }
-        });
+        btnNewButton1.addActionListener(e -> resetValueActionPerformed(e));
         btnNewButton1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/reset.png"))));
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
