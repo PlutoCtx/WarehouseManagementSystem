@@ -15,16 +15,16 @@ import java.sql.*;
 
 public class EmployeeDao {
 
-    Employee employee = Employee.EmployeeBuilder.create("server").withAge(45).build();
+//    Employee employee = Employee.EmployeeBuilder.create("server").withAge(45).build();
 //        System.out.println(employee.getEmployeeNumber() + "  " + employee.getAge());
 
-    Employee employeeOne = Employee.EmployeeBuilder.anEmployee().withAge(46).build();
+//    Employee employeeOne = Employee.EmployeeBuilder.anEmployee().withAge(46).build();
 
 
     /**
      * 登录验证
      * @param connection    数据库链接
-     * @param employee  用户
+     * @param employeeBuilder  用户
      * @return  返回查找到的用户
      * @throws Exception    这个方法能够实现登录，但是业务逻辑有问题
      * 逻辑问题：
@@ -34,18 +34,17 @@ public class EmployeeDao {
      *      典型的数据问题，但是，我们可以在数据库中将两者标记为唯一，以此来解决此问题
      *
      */
-    public Employee login(Connection connection, Employee employee) throws Exception{
+    public Employee login(Connection connection, Employee employeeBuilder) throws Exception{
         Employee resultUser = null;
-        String sql = "SELECT * FROM t_user where userName = ? and password = ?";
+        String sql = "SELECT * FROM employeeinformationsheet WHERE employeeNumber = ? AND password = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, employee.getName());
-        preparedStatement.setString(2, employee.getPassword());
+        preparedStatement.setString(1, employeeBuilder.getEmployeeNumber());
+        preparedStatement.setString(2, employeeBuilder.getPassword());
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()){
             resultUser = new Employee();
-            resultUser.setId(resultSet.getInt("id"));
-            resultUser.setName(resultSet.getString("userName"));
+            resultUser.setName(resultSet.getString("employeeNumber"));
             resultUser.setPassword(resultSet.getString("password"));
         }
         return resultUser;

@@ -83,6 +83,7 @@ public class Employee {
         this.dateOfDeparture = employeeBuilder.dateOfDeparture;
     }
 
+    @Data
     public static final class EmployeeBuilder {
         /**
          * id

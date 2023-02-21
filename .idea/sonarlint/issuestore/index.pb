@@ -11,7 +11,5 @@ L
 _03MainSub-Interface/pom.xml,6\2\621f8ab53050447bfce5d34add4b42394df521fa
 €
 P_03MainSub-Interface/src/main/java/com/bookmanager/view/BookTypeAddInterFrm.java,6\d\6d80aef33886fad1aa814dd8ce4fcb83055138ab
-}
-M_03MainSub-Interface/src/main/java/com/bookmanager/view/Java1234InterFrm.java,4\b\4b229bc27b2d66f52fce853b2fd6275b62a0ffd9
 v
 F_03MainSub-Interface/src/main/java/com/bookmanager/model/BookType.java,7\b\7b5de8d0b2378ad5054c81abb96d01e13437cf54

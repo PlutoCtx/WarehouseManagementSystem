@@ -3,8 +3,6 @@ package com.bookmanager.view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Objects;
 
 /**
@@ -26,11 +24,11 @@ public class MainFrame extends JFrame {
      */
     public MainFrame() {
         setTitle("\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\u4E3B\u754C\u9762");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
 
         // 老师要求加的01
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -44,25 +42,19 @@ public class MainFrame extends JFrame {
         mnNewMenu.add(mnNewMenu1);
 
         JMenuItem menuItem = new JMenuItem("\u56FE\u4E66\u7C7B\u522B\u6DFB\u52A0");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BookTypeAddInterFrm bookTypeAddInterFrm = new BookTypeAddInterFrm();
-                bookTypeAddInterFrm.setVisible(true);
-                table.add(bookTypeAddInterFrm);
-            }
+        menuItem.addActionListener(e -> {
+            BookTypeAddInterFrm bookTypeAddInterFrm = new BookTypeAddInterFrm();
+            bookTypeAddInterFrm.setVisible(true);
+            table.add(bookTypeAddInterFrm);
         });
         menuItem.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/add.png"))));
         mnNewMenu1.add(menuItem);
 
         JMenuItem menuItem1 = new JMenuItem("\u56FE\u4E66\u7C7B\u522B\u7EF4\u62A4");
-        menuItem1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BookTypeManageInterFrm bookTypeManageInterFrm=new BookTypeManageInterFrm();
-                bookTypeManageInterFrm.setVisible(true);
-                table.add(bookTypeManageInterFrm);
-            }
+        menuItem1.addActionListener(e -> {
+            BookTypeManageInterFrm bookTypeManageInterFrm=new BookTypeManageInterFrm();
+            bookTypeManageInterFrm.setVisible(true);
+            table.add(bookTypeManageInterFrm);
         });
         menuItem1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/edit.png"))));
         mnNewMenu1.add(menuItem1);
@@ -72,41 +64,32 @@ public class MainFrame extends JFrame {
         mnNewMenu.add(mnNewMenu2);
 
         JMenuItem menuItem2 = new JMenuItem("\u56FE\u4E66\u6DFB\u52A0");
-        menuItem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                BookAddInterFrm bookAddInterFrm=new BookAddInterFrm();
-                bookAddInterFrm.setVisible(true);
-                table.add(bookAddInterFrm);
-            }
+        menuItem2.addActionListener(arg0 -> {
+            BookAddInterFrm bookAddInterFrm=new BookAddInterFrm();
+            bookAddInterFrm.setVisible(true);
+            table.add(bookAddInterFrm);
         });
         menuItem2.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/add.png"))));
         mnNewMenu2.add(menuItem2);
 
         JMenuItem menuItem3 = new JMenuItem("\u56FE\u4E66\u7EF4\u62A4");
-        menuItem3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                BookManageInterFrm bookManageInterFrm=new BookManageInterFrm();
-                bookManageInterFrm.setVisible(true);
-                table.add(bookManageInterFrm);
-            }
+        menuItem3.addActionListener(arg0 -> {
+            BookManageInterFrm bookManageInterFrm=new BookManageInterFrm();
+            bookManageInterFrm.setVisible(true);
+            table.add(bookManageInterFrm);
         });
         menuItem3.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/edit.png"))));
         mnNewMenu2.add(menuItem3);
 
-        JMenuItem menuItem_4 = new JMenuItem("\u5B89\u5168\u9000\u51FA");
-        menuItem_4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int result=JOptionPane.showConfirmDialog(null, "是否退出系统");
-                if(result==0){
-                    dispose();
-                }
+        JMenuItem menuItem4 = new JMenuItem("\u5B89\u5168\u9000\u51FA");
+        menuItem4.addActionListener(e -> {
+            int result=JOptionPane.showConfirmDialog(null, "是否退出系统");
+            if(result==0){
+                dispose();
             }
         });
-        menuItem_4.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/exit.png"))));
-        mnNewMenu.add(menuItem_4);
+        menuItem4.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/exit.png"))));
+        mnNewMenu.add(menuItem4);
 
         JMenu menu = new JMenu("\u5173\u4E8E\u6211\u4EEC");
         menu.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/about.png"))));
@@ -114,13 +97,10 @@ public class MainFrame extends JFrame {
 
 
         JMenuItem jMenuItem = new JMenuItem("\u5173\u4E8EJava");
-        jMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Java1234InterFrm java1234InterFrm=new Java1234InterFrm();
-                java1234InterFrm.setVisible(true);
-                table.add(java1234InterFrm);
-            }
+        jMenuItem.addActionListener(arg0 -> {
+            Java1234InterFrm java1234InterFrm=new Java1234InterFrm();
+            java1234InterFrm.setVisible(true);
+            table.add(java1234InterFrm);
         });
         jMenuItem.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/about.png"))));
         menu.add(jMenuItem);
@@ -133,6 +113,6 @@ public class MainFrame extends JFrame {
         contentPane.add(table, BorderLayout.CENTER);
 
         // 设置JFrame最大化
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 }
