@@ -1,4 +1,4 @@
-package com.bookmanager.view;
+package com.course_suc;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -12,7 +12,7 @@ import java.awt.*;
  * @version 2022/12/21 10:08
  */
 
-public class Java1234InterFrm extends JInternalFrame {
+public class Java1234InterFrm extends JInternalFrame  implements InterfaceForm{
 
     /**
      * 内部窗体
@@ -26,7 +26,6 @@ public class Java1234InterFrm extends JInternalFrame {
         setMaximizable(true);
 
         JLabel lblNewLabel = new JLabel("haha");
-//        lblNewLabel.setIcon(new ImageIcon(Java1234InterFrm.class.getResource("/images/java1234.png")));
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
             groupLayout.createParallelGroup(Alignment.LEADING)
@@ -43,5 +42,10 @@ public class Java1234InterFrm extends JInternalFrame {
                     .addContainerGap(149, Short.MAX_VALUE))
         );
         getContentPane().setLayout(groupLayout);
+    }
+
+    @Override
+    public void ExecuteForm(JMenuItem src) {
+
     }
 }

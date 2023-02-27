@@ -1,30 +1,18 @@
-package com.bookmanager.view;
+package com.course_suc;
 
-import com.bookmanager.dao.BookDao;
-import com.bookmanager.dao.BookTypeDao;
-import com.bookmanager.model.Book;
-import com.bookmanager.model.BookType;
-import com.bookmanager.utils.DBUtil;
-import com.bookmanager.utils.StringUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.Vector;
 
 /**
  * @author Max chenmochen1954@163.com
  * since jdk17
  * @version 2022/12/21 12:04
  */
-public class BookManageInterFrm extends JInternalFrame {
+public class GoodsManageInterFrm extends JInternalFrame implements InterfaceForm {
     private JTable bookTable;
     private JTextField s_bookNameTxt;
     private JTextField s_authorTxt;
@@ -34,9 +22,7 @@ public class BookManageInterFrm extends JInternalFrame {
     private JTextArea bookDescTxt;
     private JComboBox bookTypeJcb ;
 
-    private DBUtil dbUtil=new DBUtil();
-    private BookTypeDao bookTypeDao=new BookTypeDao();
-    private BookDao bookDao=new BookDao();
+
     private JTextField idTxt;
     private JTextField bookNameTxt;
     private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -46,7 +32,7 @@ public class BookManageInterFrm extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public BookManageInterFrm() {
+    public GoodsManageInterFrm() {
         setClosable(true);
         setIconifiable(true);
         // 图书管理
@@ -123,10 +109,10 @@ public class BookManageInterFrm extends JInternalFrame {
 
         // 修改
         JButton button1 = new JButton("\u4FEE\u6539");
-        button1.addActionListener(this::bookUpdateActionPerformed);
+
 
         JButton button2 = new JButton("\u5220\u9664");
-        button2.addActionListener(this::bookDeleteActionPerformed);
+
         
         GroupLayout gl_panel1 = new GroupLayout(panel1);
         gl_panel1.setHorizontalGroup(
@@ -229,7 +215,7 @@ public class BookManageInterFrm extends JInternalFrame {
 
         // 查询
         JButton button = new JButton("\u67E5\u8BE2");
-        button.addActionListener(this::bookSearchActionPerformed);
+
 
         GroupLayout gl_panel = new GroupLayout(panel);
         gl_panel.setHorizontalGroup(
@@ -268,12 +254,7 @@ public class BookManageInterFrm extends JInternalFrame {
         panel.setLayout(gl_panel);
 
         bookTable = new JTable();
-        bookTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent met) {
-                bookTableMousePressed(met);
-            }
-        });
+
         scrollPane.setViewportView(bookTable);
         bookTable.setModel(new DefaultTableModel(
                 new Object[][] {
@@ -294,126 +275,8 @@ public class BookManageInterFrm extends JInternalFrame {
         bookTable.getColumnModel().getColumn(5).setPreferredWidth(119);
         getContentPane().setLayout(groupLayout);
 
-        // 设置文本域边框
-        bookDescTxt.setBorder(new LineBorder(new Color(127,157,185), 1, false));
-
-        this.fillBookType("search");
-        this.fillBookType("modify");
-        this.fillTable(new Book());
     }
 
-
-
-
-
-    /**
-     * 图书删除事件处理
-     * @param evt   异常
-     */
-    private void bookDeleteActionPerformed(ActionEvent evt) {
-        String id=idTxt.getText();
-        if(StringUtil.isEmpty(id)){
-            JOptionPane.showMessageDialog(null, "请选择要删除的记录");
-            return;
-        }
-        int n=JOptionPane.showConfirmDialog(null, "确定要删除该记录吗");
-        if(n==0){
-            Connection con=null;
-            try{
-                con=dbUtil.getConnection();
-                int deleteNum=bookDao.delete(con, id);
-                if(deleteNum==1){
-                    JOptionPane.showMessageDialog(null, "删除成功");
-                    this.resetValue();
-                    this.fillTable(new Book());
-                }else{
-                    JOptionPane.showMessageDialog(null, "删除失败");
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "删除失败");
-            }finally{
-                try {
-                    dbUtil.closeConnection(con);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-
-
-
-    /**
-     * 图书修改事件处理
-     * @param evt   异常
-     */
-    private void bookUpdateActionPerformed(ActionEvent evt) {
-        String id=this.idTxt.getText();
-        if(StringUtil.isEmpty(id)){
-            JOptionPane.showMessageDialog(null, "请选择要修改的记录");
-            return;
-        }
-
-        String bookName = this.bookNameTxt.getText();
-        String author = this.authorTxt.getText();
-        String price = this.priceTxt.getText();
-        String bookDesc = this.bookDescTxt.getText();
-
-        // 图书名称、作者、价格不能为空
-        if(StringUtil.isEmpty(bookName)){
-            JOptionPane.showMessageDialog(null, "图书名称不能为空");
-            return;
-        }
-
-        if(StringUtil.isEmpty(author)){
-            JOptionPane.showMessageDialog(null, "图书作者不能为空");
-            return;
-        }
-
-        if(StringUtil.isEmpty(price)){
-            JOptionPane.showMessageDialog(null, "图书价格不能为空");
-            return;
-        }
-
-        String sex = "";
-        if(manJrb.isSelected()){
-            sex = "男";
-        }else if(femaleJrb.isSelected()){
-            sex = "女";
-        }
-
-        BookType bookType = (BookType) bookTypeJcb.getSelectedItem();
-        int bookTypeId = bookType.getId();
-
-        Book book = new Book(Integer.parseInt(id),  bookName, author, sex, Float.parseFloat(price),  bookTypeId,  bookDesc);
-
-        Connection con = null;
-        try{
-            con = dbUtil.getConnection();
-            int addNum = bookDao.update(con, book);
-            if(addNum == 1){
-                JOptionPane.showMessageDialog(null, "图书修改成功");
-                resetValue();
-                this.fillTable(new Book());
-            }else{
-                JOptionPane.showMessageDialog(null, "图书修改失败");
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "图书修改失败");
-        }finally{
-            try {
-                dbUtil.closeConnection(con);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
 
     /**
      * 重置表单
@@ -431,130 +294,9 @@ public class BookManageInterFrm extends JInternalFrame {
     }
 
 
-    /**
-     * 表格行点击事件处理
-     * @param met
-     */
-    private void bookTableMousePressed(MouseEvent met) {
-        int row=this.bookTable.getSelectedRow();
-        this.idTxt.setText((String)bookTable.getValueAt(row, 0));
-        this.bookNameTxt.setText((String)bookTable.getValueAt(row, 1));
-        this.authorTxt.setText((String)bookTable.getValueAt(row, 2));
-        String sex=(String)bookTable.getValueAt(row, 3);
-        if("男".equals(sex)){
-            this.manJrb.setSelected(true);
-        }else if("女".equals(sex)){
-            this.femaleJrb.setSelected(true);
-        }
-        this.priceTxt.setText((Float)bookTable.getValueAt(row, 4)+"");
-        this.bookDescTxt.setText((String)bookTable.getValueAt(row, 5));
-        String bookTypeName=(String)this.bookTable.getValueAt(row, 6);
-        int n=this.bookTypeJcb.getItemCount();
-        for(int i=0;i<n;i++){
-            BookType item=(BookType)this.bookTypeJcb.getItemAt(i);
-            if(item.getBookTypeName().equals(bookTypeName)){
-                this.bookTypeJcb.setSelectedIndex(i);
-            }
-        }
+    @Override
+    public void ExecuteForm(JMenuItem src) {
+        // 设置文本域边框
+        bookDescTxt.setBorder(new LineBorder(new Color(127,157,185), 1, false));
     }
-
-
-
-
-
-    /**
-     * 图书查询事件处理
-     * @param evt   bookType可能为空
-     */
-    private void bookSearchActionPerformed(ActionEvent evt) {
-        String bookName = this.s_bookNameTxt.getText();
-        String author = this.s_authorTxt.getText();
-        BookType bookType = (BookType) this.s_bookTypeJcb.getSelectedItem();
-        assert bookType != null;
-        int bookTypeId = bookType.getId();
-
-        Book book = new Book(bookName,author,bookTypeId);
-        this.fillTable(book);
-    }
-
-
-
-
-    /**
-     * 初始化下拉框
-     * @param type 下拉框类型
-     */
-    private void fillBookType(String type){
-        Connection con = null;
-        BookType bookType = null;
-        try{
-            con = dbUtil.getConnection();
-            ResultSet rs = bookTypeDao.list(con, new BookType());
-            if("search".equals(type)){
-                bookType = new BookType();
-                bookType.setBookTypeName("请选择...");
-                bookType.setId(-1);
-                this.s_bookTypeJcb.addItem(bookType);
-            }
-            while(rs.next()){
-                bookType=new BookType();
-                bookType.setBookTypeName(rs.getString("bookTypeName"));
-                bookType.setId(rs.getInt("id"));
-                if("search".equals(type)){
-                    this.s_bookTypeJcb.addItem(bookType);
-                }else if("modify".equals(type)){
-                    this.bookTypeJcb.addItem(bookType);
-                }
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            try {
-                dbUtil.closeConnection(con);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-
-
-
-    /**
-     * 初始化表格数据
-     * @param book  实体类
-     */
-    private void fillTable(Book book){
-        DefaultTableModel dtm = (DefaultTableModel) bookTable.getModel();
-        // 设置成0行
-        dtm.setRowCount(0);
-        Connection con = null;
-        try{
-            con = dbUtil.getConnection();
-            ResultSet rs = bookDao.list(con, book);
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString("id"));
-                v.add(rs.getString("bookName"));
-                v.add(rs.getString("author"));
-                v.add(rs.getString("sex"));
-                v.add(rs.getFloat("price"));
-                v.add(rs.getString("bookDesc"));
-                v.add(rs.getString("bookTypeName"));
-                dtm.addRow(v);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            try {
-                dbUtil.closeConnection(con);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
-
 }

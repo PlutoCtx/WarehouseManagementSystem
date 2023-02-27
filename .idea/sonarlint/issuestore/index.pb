@@ -11,3 +11,7 @@ L
 _03MainSub-Interface/pom.xml,6\2\621f8ab53050447bfce5d34add4b42394df521fa
 v
 F_03MainSub-Interface/src/main/java/com/bookmanager/model/BookType.java,7\b\7b5de8d0b2378ad5054c81abb96d01e13437cf54
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+w
+G_03MainSub-Interface/src/main/java/com/bookmanager/view/LogOnFrame.java,7\4\745e3f584e980c753dd8cd3452335479dc25a63b

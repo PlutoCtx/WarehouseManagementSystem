@@ -9,4 +9,9 @@ import javax.swing.*;
  */
 
 public class EmployeeAddFrame {
+    private JTextField employeeNumberTextField;
+    private JTextField nameTextField;
+    private JTextField sexTextField;
+    private JTextField ageTextField;
+    private JTextField contactTextField;
 }
