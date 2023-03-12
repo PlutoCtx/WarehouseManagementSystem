@@ -14,14 +14,15 @@ import java.awt.*;
 
 public class TreeWin extends JFrame implements TreeSelectionListener {
     JTree tree;
-    DefaultMutableTreeNode[] alyerNode = new DefaultMutableTreeNode[9];
+    DefaultMutableTreeNode[] layerNode = new DefaultMutableTreeNode[9];
     String [] tableHead;
-    String [][] content;
+    String [][] content = null;
     JTextArea showText;
+
     TreeWin(){
         get();
         creat();
-        tree = new JTree(alyerNode[0]);
+        tree = new JTree(layerNode[0]);
         tree.addTreeSelectionListener(this);
         showText = new JTextArea();
         setLayout(new GridLayout(1,2));
@@ -36,7 +37,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
     }
 
     void creat(){
-        alyerNode[0] = new DefaultMutableTreeNode(new Node(content[0]));
+        layerNode[0] = new DefaultMutableTreeNode(new Node(content[0]));
         for(int i = 1,n = content.length;i < n;i++){
             for(int j = 0,m = content[i].length;j < m;j++){
                 content[i][j] = content[i][j].trim();
@@ -45,8 +46,8 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
             String s = content[i][2];
             int len = s.length();
             int now_layer = len/2;
-            alyerNode[now_layer-1].add(node);
-            alyerNode[now_layer] = node;
+            layerNode[now_layer-1].add(node);
+            layerNode[now_layer] = node;
         }
     }
 
@@ -59,7 +60,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
     }
 
     void setalter(int c,DefaultMutableTreeNode s){
-        alyerNode[c] = s;
+        layerNode[c] = s;
     }
 
     @Override

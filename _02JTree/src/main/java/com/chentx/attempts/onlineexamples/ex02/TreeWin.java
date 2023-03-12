@@ -108,12 +108,13 @@ public class TreeWin extends JFrame implements TreeSelectionListener{
         setBounds(80,80,300,300);
         validate();
     }
+    @Override
     public void valueChanged(TreeSelectionEvent e){
         DefaultMutableTreeNode node=
                 (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
         if(node.isLeaf()){
             Book s=(Book)node.getUserObject();                // 得到节点中存放的对象
-            showText.append(s.name+","+s.chubanshe+"\n");
+            showText.append(s.name+","+s.publishingHouse+"\n");
         }
         else{
             showText.setText(null);

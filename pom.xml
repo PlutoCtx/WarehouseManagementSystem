@@ -11,7 +11,7 @@
     <modules>
         <module>_01JTable</module>
         <module>_02JTree</module>
-        <module>_MainSub-Interface</module>
+        <module>_03MainSub-Interface</module>
     </modules>
 
     <properties>
@@ -50,6 +50,18 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+            要和java的版本号一致
+        -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.3.jre17</version>
+        </dependency>
+
+
+
 
 
     </dependencies>

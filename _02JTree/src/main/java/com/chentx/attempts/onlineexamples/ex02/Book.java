@@ -7,12 +7,19 @@ package com.chentx.attempts.onlineexamples.ex02;
  */
 
 public class Book {
+    /**
+     * 书名
+     */
     String name;
-    String chubanshe;
+    /**
+     * 出版社
+     */
+    String publishingHouse;
     Book(String n,String p){
         name=n;
-        chubanshe = p;
+        publishingHouse = p;
     }
+    @Override
     public String toString() { //返回对象的串表示
         return name;
     }
