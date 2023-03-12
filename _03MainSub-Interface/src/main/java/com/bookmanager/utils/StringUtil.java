@@ -15,11 +15,7 @@ public class StringUtil {
      * @return 结果值
      */
     public static boolean isEmpty(String str){
-        if (str == null || "".equals(str.trim())){
-            return true;
-        }else {
-            return false;
-        }
+        return str == null || "".equals(str.trim());
     }
 
     /**
@@ -28,25 +24,7 @@ public class StringUtil {
      * @return 结果值
      */
     public static boolean isNotEmpty(String str){
-        if (str != null && !"".equals(str.trim())){
-            return true;
-        }else {
-            return false;
-        }
+        return str != null && !"".equals(str.trim());
     }
 
 }
-
-
-
-/*package com.bookmanager.utils;
-
-/**
- * @author MaxBrooks chentingxian195467@163.com
- * @version 2023/2/13 18:11
- * @since JDK17
-
-
-public class StringUtil {
-}
-*/

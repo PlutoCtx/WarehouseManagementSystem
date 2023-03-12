@@ -15,7 +15,7 @@ import java.util.List;
 public class DBConnector {
     private static final String CONNECT_URL = "jdbc:mysql://localhost:3306/warehousemanagementsystem?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String CONNECT_USERNAME = "root";
-    private static final String CONNECT_PASSWORD = "Yuhuangtao111";
+    private static final String CONNECT_PASSWORD = "Shangxiao111";
 
     private Connection connection;
 

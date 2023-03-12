@@ -1,0 +1,17 @@
+package com.chentx.tables.module03.view;
+
+import javax.swing.*;
+
+/**
+ * @author MaxBrooks chentingxian195467@163.com
+ * @version 2023/2/20 20:12
+ * @since JDK17
+ */
+
+public class EmployeeAddFrame {
+    private JTextField employeeNumberTextField;
+    private JTextField nameTextField;
+    private JTextField sexTextField;
+    private JTextField ageTextField;
+    private JTextField contactTextField;
+}

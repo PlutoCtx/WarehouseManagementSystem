@@ -12,6 +12,7 @@
         <module>_01JTable</module>
         <module>_02JTree</module>
         <module>_03MainSub-Interface</module>
+        <module>_Modules</module>
     </modules>
 
     <properties>
@@ -51,16 +52,13 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
-            要和java的版本号一致
-        -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>11.2.3.jre17</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
         </dependency>
-
-
 
 
 

@@ -12,14 +12,27 @@ import java.sql.DriverManager;
  */
 public class DBUtil {
 
-    //数据库
-    private String url = "jdbc:mysql://localhost:3306/sys";
-    //用户名
-    private String username = "root";
-    //密码
-    private String password = "Yuhuangtao111";
-    //驱动名称
-    private String jdbcName = "com.mysql.cj.jdbc.Driver";
+    /**
+     * 数据库
+     */
+    private String url = "jdbc:mysql://localhost:3306/sys" +
+            "?useUnicode=true" +
+            "&characterEncoding=utf8" +
+            "&useSSL=false" +
+            "&serverTimezone=UTC" +
+            "&allowPublicKeyRetrieval=true";
+    /**
+     * 用户名
+     */
+    private final String username = "root";
+    /**
+     * 密码
+     */
+    private final String password = "Shangxiao111";
+    /**
+     * 驱动名称
+     */
+    private final String jdbcName = "com.mysql.cj.jdbc.Driver";
 
     /**
      * 获取数据库连接
@@ -31,7 +44,6 @@ public class DBUtil {
         Connection connection = DriverManager.getConnection(url, username, password);
         return connection;
     }
-
 
     /**
      * 关闭数据库连接
@@ -45,15 +57,3 @@ public class DBUtil {
     }
 }
 
-
-
-/*package com.bookmanager.utils;
-
-/**
- * @author MaxBrooks chentingxian195467@163.com
- * @version 2023/2/13 18:12
- * @since JDK17
- *
-
-public class DBUtil {
-}*/

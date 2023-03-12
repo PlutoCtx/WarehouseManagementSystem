@@ -75,6 +75,12 @@ public class Book {
         this.bookDesc = bookDesc;
     }
 
+    /**
+     * 方便查找书籍操作
+     * @param bookName  书名
+     * @param author    作者
+     * @param bookTypeId    书籍编号
+     */
     public Book(String bookName, String author, Integer bookTypeId) {
         super();
         this.bookName = bookName;
