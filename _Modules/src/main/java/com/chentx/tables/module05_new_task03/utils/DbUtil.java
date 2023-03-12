@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /**
  * 数据库连接类
@@ -20,18 +21,18 @@ public class DbUtil {
             "&characterEncoding=utf8" +
             "&rewriteBatchedStatements=true";
     private final String USER = "root" ;
-    private String PASSWORD = "Shangxiao111" ;
+    private final String PASSWORD = "Shangxiao111" ;
     /**
-     * "org.gjt.mm.mysql.Driver"似乎也是可以的
+     * "org.gjt.mm.mysql.Driver"似乎也是可以的， 但这是以前的时候用的，可能会出问题
      */
-    private String dbDriver = "com.mysql.cj.jdbc.Driver" ;
+    private final String dbDriver = "com.mysql.cj.jdbc.Driver" ;
     private Connection connection = null ;
 
     public Connection getConnection() {
         try {
             Class.forName(dbDriver) ;
             connection = DriverManager.getConnection(url, USER, PASSWORD) ;
-            System.out.println("数据库连接成功！");
+            Logger.getGlobal().info("数据库连接成功！");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -47,20 +48,25 @@ public class DbUtil {
         if(connection !=null) {
             try {
                 connection.close();
-                System.out.println("数据库连接关闭");
+                Logger.getGlobal().info("数据库连接关闭");
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
     }
+
 //    public static void main(String[] args) {
 //        DBUtil dbUtil = new DBUtil() ;
 //        dbUtil.getConnection();
 //    }
 
 
-
+    /**
+     * 批量输入，并发插入数据
+     *
+     * @throws SQLException guess
+     */
     public static void testInsert2() throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -74,7 +80,7 @@ public class DbUtil {
                 ps.setObject(1,"name_"+i);
                 //1、“攒”sql
                 ps.addBatch();
-                if(i%500 == 0){
+                if(i % 500 == 0){
                     //2、执行batch
                     ps.executeBatch();
                     //3、清空batch
@@ -82,10 +88,11 @@ public class DbUtil {
                 }
             }
             long end = System.currentTimeMillis();
-            System.out.println(end-start+"ms");
+            Logger.getGlobal().info(end-start+"ms");
         }catch (Exception e){
             e.printStackTrace();
         }finally {
+            assert conn != null;
             conn.close();
         }
     }
