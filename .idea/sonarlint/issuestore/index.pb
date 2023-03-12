@@ -15,3 +15,11 @@ F_03MainSub-Interface/src/main/java/com/bookmanager/model/BookType.java,7\b\7b5
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 w
 G_03MainSub-Interface/src/main/java/com/bookmanager/view/LogOnFrame.java,7\4\745e3f584e980c753dd8cd3452335479dc25a63b
+|
+L_Modules/src/main/java/com/chentx/tables/module03/view/EmployeeAddFrame.form,0\a\0aa4957f1a8aea9e5766f9b8eab8fa0e1c4566bd
+
+O_03MainSub-Interface/src/main/java/com/bookmanager/view/BookManageInterFrm.java,a\f\af6d80bae097e7ce96d8d7d83144c0c28f976582
+|
+L_Modules/src/main/java/com/chentx/tables/module03/view/EmployeeAddFrame.java,8\e\8e72cc89b95942a7be1a8a1db73b17f27621123f
+}
+M_03MainSub-Interface/src/main/java/com/bookmanager/view/Java1234InterFrm.java,4\b\4b229bc27b2d66f52fce853b2fd6275b62a0ffd9

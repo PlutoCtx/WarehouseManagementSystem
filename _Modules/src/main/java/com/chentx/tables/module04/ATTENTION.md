@@ -67,10 +67,10 @@
 
 
 
-# [java批处理教程](https://blog.csdn.net/dnc8371/article/details/106701790)
-# [Spring Batch完整入门实践](https://segmentfault.com/a/1190000016278038)
-# [廖雪峰JDBC Batch](https://www.liaoxuefeng.com/wiki/1252599548343744/1322290857902113)
-# [java Batch类代码示例](https://vimsky.com/examples/detail/java-class-org.apache.hadoop.hbase.client.coprocessor.Batch.html)
-# [JDBC 插入数据到数据库的四种姿势](https://huaweicloud.csdn.net/63355f74d3efff3090b548e4.html?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Eactivity-1-125930870-blog-79742718.pc_relevant_vip_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Eactivity-1-125930870-blog-79742718.pc_relevant_vip_default&utm_relevant_index=2#devmenu8)
-# [Java Code Greeks JavaBatchTutorial](https://www.javacodegeeks.com/2018/05/java-batch-tutorial.html)
+### [java批处理教程](https://blog.csdn.net/dnc8371/article/details/106701790)
+### [Spring Batch完整入门实践](https://segmentfault.com/a/1190000016278038)
+### [廖雪峰JDBC Batch](https://www.liaoxuefeng.com/wiki/1252599548343744/1322290857902113)
+### [java Batch类代码示例](https://vimsky.com/examples/detail/java-class-org.apache.hadoop.hbase.client.coprocessor.Batch.html)
+### [JDBC 插入数据到数据库的四种姿势](https://huaweicloud.csdn.net/63355f74d3efff3090b548e4.html?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Eactivity-1-125930870-blog-79742718.pc_relevant_vip_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Eactivity-1-125930870-blog-79742718.pc_relevant_vip_default&utm_relevant_index=2#devmenu8)
+### [Java Code Greeks JavaBatchTutorial](https://www.javacodegeeks.com/2018/05/java-batch-tutorial.html)
 
