@@ -1,5 +1,7 @@
 package com.chentx.tables.module05_new_task03.utils;
 
+import com.chentx.tables.module05_new_task03.entity.Cargo;
+
 import java.sql.*;
 import java.util.logging.Logger;
 
@@ -40,7 +42,6 @@ public class Query {
             e.printStackTrace();
         }
     }
-
 
     public void setSql(String sql) {
         this.sql = sql;
@@ -109,6 +110,9 @@ public class Query {
             Logger.getGlobal().warning("请输入正确的表名：\n" + e);
         }
     }
+
+
+
 }
 
 
