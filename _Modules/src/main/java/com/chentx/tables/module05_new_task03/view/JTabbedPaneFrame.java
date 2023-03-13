@@ -4,8 +4,6 @@ import com.chentx.tables.module05_new_task03.dao.CargoDao;
 import com.chentx.tables.module05_new_task03.entity.Cargo;
 import com.chentx.tables.module05_new_task03.entity.Node;
 import com.chentx.tables.module05_new_task03.utils.Database;
-import com.chentx.tables.module05_new_task03.utils.DbUtil;
-import com.chentx.tables.module05_new_task03.utils.Query;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -15,7 +13,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -36,9 +33,13 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
 
     JTabbedPane jTabbedPane;
     ImageIcon imageIcon;
-    // 返回全部字段名称
+    /**
+     * 返回全部字段名称
+     */
     String [] tableHead;
-    // 返回二维数组，即查询的全部记录
+    /**
+     * 返回二维数组，即查询的全部记录
+     */
     String [][] content;
 
     JTree tree;
@@ -47,25 +48,29 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     String [][] content02 = null;
     JTextArea showText;
     JTable table;
-    Query findRecord = new Query();
+
 
     JButton button = new JButton("确定");
-
     CargoDao cargoDao = null;
     JLabel jl1 = new JLabel("货号");
     JLabel jl2 = new JLabel("货名");
     JLabel jl3 = new JLabel("数量");
     JLabel jl4 = new JLabel("单价");
 
-    // 行
+    /**
+     * 行
+     */
     Box boxH;
-    // 列
+    /**
+     * 列
+     */
     Box boxVOne;
     Box boxVTwo;
 
     Cargo cargo = new Cargo();
 
-    DbUtil db = new DbUtil();
+
+    Database findRecord = new Database();
     JTabbedPaneFrame(){
         frame = new JFrame("this is a test");
         // 选项卡
@@ -112,16 +117,13 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
 
         cargo.setCargoId(jl1.getText());
         cargo.setCargoName(jl2.getText());
-//        cargo.setCargoNumber(Integer.parseInt(jl3.getText()));
-//        cargo.setCargoAvePrice(Double.valueOf(jl4.getText()));
 
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Connection con = null;
-
                 try {
-                    con = db.getConnection();
+                    con = findRecord.getConnection();
                     int addNum = cargoDao.add(con, cargo);
 
                     if (addNum >= 1) {
@@ -135,9 +137,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
                 }
             }
         });
-
     }
-
 
 
 
@@ -151,17 +151,14 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         tree.addTreeSelectionListener(this);
         showText = new JTextArea();
         panel1.setLayout(new GridLayout(1,2));
-//        setBounds(80,80,900,500);
-//        Font f = new Font("宋体",Font.PLAIN,22);
-//        SetFont.setFont(f, showText, tree);
-//        panel1.validate();
+
     }
 
     /**
      * 从数据库获取数据，方便后面树组件内容的实现
      */
     void get(){
-        Database findRecord = new Database();
+        findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
         findRecord.setSQL("select * from clggb");
         content02 = findRecord.getRecord();
@@ -206,7 +203,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      * 初始化table界面
      */
     public void initTable(){
-        findRecord.setSql("SELECT * FROM clggb");
+        findRecord.setSQL("SELECT * FROM clggb");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
         table = new JTable(content,tableHead);
