@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  * 界面显示类
@@ -22,8 +23,10 @@ import java.util.Objects;
 public class JTabbedPaneFrame implements TreeSelectionListener {
 
     JFrame frame;
-    JPanel panel1, panel2;
-    JLabel jLabel1, jLabel2;
+    JPanel panel1;
+    JPanel panel2;
+    JLabel jLabel1;
+    JLabel jLabel2;
     JTabbedPane jTabbedPane;
     ImageIcon imageIcon;
     // 返回全部字段名称
@@ -81,33 +84,37 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     }
 
 
-
-
-
-
-
-    void creat(){
-        layerNode[0] = new DefaultMutableTreeNode(new Node(content02[0]));
-        for(int i = 1,n = content02.length;i < n;i++){
-            for(int j = 0,m = content02[i].length;j < m;j++){
-                content02[i][j] = content02[i][j].trim();
-            }
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Node(content02[i]));
-            String s = content02[i][2];
-            int len = s.length();
-            int currentLayer = len/2;
-            layerNode[currentLayer-1].add(node);
-            layerNode[currentLayer] = node;
-        }
-    }
-
+    /**
+     * 从数据库获取数据，方便后面树组件的内容实行
+     */
     void get(){
         Database findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
         findRecord.setSQL("select * from clggb");
         content02 = findRecord.getRecord();
+        Logger.getGlobal().info(content02[0][1] + content02[0][2] + content02[0][3] + content02[0][4] + content02[0][5]);
         tableHead02 = findRecord.getColumnName();
+        Logger.getGlobal().info(tableHead02[0] + tableHead02[1] + tableHead02[2] + tableHead02[3] + tableHead02[4]);
     }
+
+
+
+    void creat(){
+        layerNode[0] = new DefaultMutableTreeNode(new Node(content02[0]));
+        for(int i = 1,n = content02.length; i < n; i++){
+            for(int j = 0,m = content02[i].length;j < m;j++){
+                content02[i][2] = content02[i][2].trim();
+            }
+            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Node(content02[i]));
+            String s = content02[i][2];
+            int len = s.length();
+            int currentLayer = len / 2;
+            layerNode[currentLayer-1].add(node);
+            layerNode[currentLayer] = node;
+        }
+    }
+
+
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
