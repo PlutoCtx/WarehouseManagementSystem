@@ -33,9 +33,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     JPanel panel1;
     JPanel panel2;
     JPanel panel3;
-//    JLabel jLabel1;
-//    JLabel jLabel2;
-//    JLabel jLabel3;
+
     JTabbedPane jTabbedPane;
     ImageIcon imageIcon;
     // 返回全部字段名称
@@ -51,8 +49,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     JTable table;
     Query findRecord = new Query();
 
-    JTextField[] textField = new JTextField[4];
-    JLabel[] jLabels = new JLabel[4];
     JButton button = new JButton("确定");
 
     CargoDao cargoDao = null;
@@ -76,17 +72,11 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel1 = new JPanel();
         panel2 = new JPanel();
         panel3 = new JPanel();
-        // 选项卡的内容，之后被组件覆盖
-//        jLabel1 = new JLabel("card one");
-//        jLabel2 = new JLabel("card two");
+
         //采用默认的选项卡面板
         jTabbedPane = new JTabbedPane();
 
-        textField = new JTextField[4];
-        jLabels = new JLabel[4];
         initPreparedStatement();
-
-
 
         imageIcon = new ImageIcon("_Modules/src/main/resources/login.png");
         imageIcon.setImage(imageIcon.getImage().getScaledInstance(15, 15, 1));
@@ -140,17 +130,13 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
                         JOptionPane.showMessageDialog(null, "插入失败");
                     }
                     con.close();
-
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
 
     }
-
-
-
 
 
 
@@ -236,8 +222,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         ImageIcon imageIcon2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/close.png")));
         imageIcon2.setImage(imageIcon2.getImage().getScaledInstance(15, 15, 2));
 
-//        panel1.add(jLabel1);
-//        panel2.add(jLabel2);
         // 添加
         jTabbedPane.addTab("JTree Pane", imageIcon, panel1);
         jTabbedPane.addTab("JTable Pane", imageIcon, panel2);
@@ -259,42 +243,3 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     }
 
 }
-
-
-/*
- * 学习并掌握选项卡JTabbedPane（教材p255),树组件与表格组件（p292）
- * mysql的多关联表的存储过程、触发器编程
- * jdbc的预处理编程
- * jdbc的事务处理编程
- * 提交（word文档）：
- * 4项内容的程序及截图
- *
-
-
-class tab extends JFrame
-{
- tab()
- {
-  super("选项卡窗格");
-  setVisible(true);
-  setSize(500,310);
-  setLocationRelativeTo(null);
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-  JButton btn = new JButton("X");
-  JTabbedPane pane = new JTabbedPane();
-  JLabel lab = new JLabel("选项卡I");
-  pane.addTab("i",lab);
-  pane.setTabComponentAt(pane.indexOfComponent(lab),btn);
-  add(pane);
- }
- public static void main(String[] args)
- {
-  new tab();
- }
-}
- *
- *
- *
- */
-
