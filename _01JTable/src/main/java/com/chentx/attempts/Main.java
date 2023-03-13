@@ -15,7 +15,12 @@ public class Main {
         // 返回二维数组，即查询的全部记录
         String [][] content;
         JTable table ;
+
+
         JFrame win = new JFrame();
+
+
+
         Query findRecord = new  Query();
         findRecord.setSql("SELECT * FROM clggb");
         // findRecord.setDatabaseName("warehousemanagementsystem");
@@ -25,7 +30,13 @@ public class Main {
 
         table = new JTable(content,tableHead);
 
+
+
+
         win.add(new JScrollPane(table));
+
+
+
         win.setBounds(12,100,800,400);
         win.setVisible(true);
         // JFrame.EXIT_ON_CLOSE

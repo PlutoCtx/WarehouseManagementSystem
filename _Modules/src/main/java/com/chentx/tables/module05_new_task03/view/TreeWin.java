@@ -1,4 +1,7 @@
-package com.chentx.attempts.attempt03_suc;
+package com.chentx.tables.module05_new_task03.view;
+
+import com.chentx.tables.module05_new_task03.entity.Node;
+import com.chentx.tables.module05_new_task03.utils.Database;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

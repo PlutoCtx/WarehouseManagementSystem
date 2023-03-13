@@ -1,4 +1,4 @@
-package com.chentx.attempts;
+package com.chentx.tables.module05_new_task03.utils;
 
 import java.sql.*;
 import java.util.logging.Logger;
