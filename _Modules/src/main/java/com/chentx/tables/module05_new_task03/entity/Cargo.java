@@ -17,9 +17,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cargo {
 
-    String cargoId;
+    /**
+     * 货号
+     */
+    String cargoNumber;
+    /**
+     * 货名
+     */
     String cargoName;
-    Integer cargoNumber;
+    /**
+     * 型号
+     */
+    String model;
+    /**
+     * 单位
+     */
+    String unit;
+    /**
+     * 库存数
+     */
+    Integer numberOfInventoryCargo;
+    /**
+     * 平均价
+     */
     Double cargoAvePrice;
+    /**
+     * 总额
+     */
+    Double totalInventoryPrice;
 
 }
