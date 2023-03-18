@@ -159,7 +159,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel1.add(new JScrollPane(tree));
         panel2.add(new JScrollPane(table));
 
-
         frame.setContentPane(jTabbedPane);
         frame.setSize(800, 400);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
