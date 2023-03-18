@@ -1,14 +1,18 @@
 package com.chentx.tables.module05_new_task03.view;
 
+import com.chentx.tables.module05_new_task03.dao.CargoDao;
+import com.chentx.tables.module05_new_task03.entity.Cargo;
 import com.chentx.tables.module05_new_task03.entity.Node;
 import com.chentx.tables.module05_new_task03.utils.Database;
-import com.chentx.tables.module05_new_task03.utils.Query;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -25,13 +29,17 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     JFrame frame;
     JPanel panel1;
     JPanel panel2;
-    JLabel jLabel1;
-    JLabel jLabel2;
+    JPanel panel3;
+
     JTabbedPane jTabbedPane;
     ImageIcon imageIcon;
-    // 返回全部字段名称
+    /**
+     * 返回全部字段名称
+     */
     String [] tableHead;
-    // 返回二维数组，即查询的全部记录
+    /**
+     * 返回二维数组，即查询的全部记录
+     */
     String [][] content;
 
     JTree tree;
@@ -39,56 +47,118 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     String [] tableHead02;
     String [][] content02 = null;
     JTextArea showText;
+    JTable table;
 
 
-    JTable table ;
-    Query findRecord = new Query();
+    JButton button = new JButton("确定");
+    CargoDao cargoDao = null;
+    JLabel jl1 = new JLabel("货号");
+    JLabel jl2 = new JLabel("货名");
+    JLabel jl3 = new JLabel("数量");
+    JLabel jl4 = new JLabel("单价");
 
+    /**
+     * 行
+     */
+    Box boxH;
+    /**
+     * 列
+     */
+    Box boxVOne;
+    Box boxVTwo;
+
+    Cargo cargo = new Cargo();
+
+
+    Database findRecord = new Database();
     JTabbedPaneFrame(){
         frame = new JFrame("this is a test");
         // 选项卡
         panel1 = new JPanel();
         panel2 = new JPanel();
-        // 选项卡的名称
-        jLabel1 = new JLabel("card one");
-        jLabel2 = new JLabel("card two");
+        panel3 = new JPanel();
+
         //采用默认的选项卡面板
         jTabbedPane = new JTabbedPane();
+
+        initPreparedStatement();
 
         imageIcon = new ImageIcon("_Modules/src/main/resources/login.png");
         imageIcon.setImage(imageIcon.getImage().getScaledInstance(15, 15, 1));
 
         initTable();
-
         initTree();
-
     }
 
 
-    public void initTree(){
+    public void initPreparedStatement(){
+        panel3.setLayout(new FlowLayout());
 
+        boxH = Box.createHorizontalBox();
+        boxVOne = Box.createVerticalBox();
+        boxVTwo = Box.createVerticalBox();
+
+        boxVOne.add(jl1);
+        boxVOne.add(jl2);
+        boxVOne.add(jl3);
+        boxVOne.add(jl4);
+
+        boxVTwo.add(new JTextField(10));
+        boxVTwo.add(new JTextField(10));
+        boxVTwo.add(new JTextField(10));
+        boxVTwo.add(new JTextField(10));
+
+        boxH.add(boxVOne);
+        boxH.add(Box.createHorizontalStrut(10));
+        boxH.add(boxVTwo);
+
+        panel3.add(boxH);
+        panel3.add(button);
+
+        cargo.setCargoId(jl1.getText());
+        cargo.setCargoName(jl2.getText());
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Connection con = null;
+                try {
+                    con = findRecord.getConnection();
+                    int addNum = cargoDao.add(con, cargo);
+
+                    if (addNum >= 1) {
+                        JOptionPane.showMessageDialog(null, "添加成功");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "插入失败");
+                    }
+                    con.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+
+    /**
+     * 初始化树组件
+     */
+    public void initTree(){
         get();
         creat();
         tree = new JTree(layerNode[0]);
         tree.addTreeSelectionListener(this);
         showText = new JTextArea();
         panel1.setLayout(new GridLayout(1,2));
-//        panel1.add(new JScrollPane(tree));
-//        panel1.add(new JScrollPane(showText));
-//        panel2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        setVisible(true);
-//        setBounds(80,80,900,500);
-//        Font f = new Font("宋体",Font.PLAIN,22);
-//        SetFont.setFont(f, showText, tree);
-//        panel1.validate();
+
     }
 
-
     /**
-     * 从数据库获取数据，方便后面树组件的内容实行
+     * 从数据库获取数据，方便后面树组件内容的实现
      */
     void get(){
-        Database findRecord = new Database();
+        findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
         findRecord.setSQL("select * from clggb");
         content02 = findRecord.getRecord();
@@ -97,8 +167,9 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         Logger.getGlobal().info(tableHead02[0] + tableHead02[1] + tableHead02[2] + tableHead02[3] + tableHead02[4]);
     }
 
-
-
+    /**
+     * 创建树及其节点
+     */
     void creat(){
         layerNode[0] = new DefaultMutableTreeNode(new Node(content02[0]));
         for(int i = 1,n = content02.length; i < n; i++){
@@ -114,8 +185,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         }
     }
 
-
-
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         DefaultMutableTreeNode node=(DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
@@ -124,9 +193,9 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         }
         if(node.isLeaf()){
             Node s = (Node)node.getUserObject();
-//            showText.append(s.toString() + "\n");
+            showText.append(s.toString() + "\n");
         }else{
-//            showText.setText(null);
+            showText.setText(null);
         }
     }
 
@@ -134,12 +203,11 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      * 初始化table界面
      */
     public void initTable(){
-        findRecord.setSql("SELECT * FROM clggb");
+        findRecord.setSQL("SELECT * FROM clggb");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
         table = new JTable(content,tableHead);
     }
-
 
     public void displayWindow(){
         // BorderLayout
@@ -151,10 +219,10 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         ImageIcon imageIcon2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/close.png")));
         imageIcon2.setImage(imageIcon2.getImage().getScaledInstance(15, 15, 2));
 
-        panel1.add(jLabel1);
-        panel2.add(jLabel2);
-        jTabbedPane.addTab("card 1", imageIcon, panel1);
-        jTabbedPane.addTab("card 2", imageIcon, panel2);
+        // 添加
+        jTabbedPane.addTab("JTree Pane", imageIcon, panel1);
+        jTabbedPane.addTab("JTable Pane", imageIcon, panel2);
+        jTabbedPane.addTab("JDBC PreparedStatement", imageIcon, panel3);
 
         panel1.add(new JScrollPane(tree));
         panel2.add(new JScrollPane(table));
@@ -171,48 +239,4 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         new JTabbedPaneFrame().displayWindow();
     }
 
-
 }
-
-
-/*
- * 学习并掌握选项卡JTabbedPane（教材p255),树组件与表格组件（p292）
- * mysql的多关联表的存储过程、触发器编程
- * jdbc的预处理编程
- * jdbc的事务处理编程
- * 提交（word文档）：
- * 4项内容的程序及截图
- *
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
-
-class tab extends JFrame
-{
- tab()
- {
-  super("选项卡窗格");
-  setVisible(true);
-  setSize(500,310);
-  setLocationRelativeTo(null);
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-  JButton btn = new JButton("X");
-  JTabbedPane pane = new JTabbedPane();
-  JLabel lab = new JLabel("选项卡I");
-  pane.addTab("i",lab);
-  pane.setTabComponentAt(pane.indexOfComponent(lab),btn);
-  add(pane);
- }
- public static void main(String[] args)
- {
-  new tab();
- }
-}
- *
- *
- *
- */
-

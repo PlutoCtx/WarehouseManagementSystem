@@ -51,7 +51,7 @@ public class Node {
 
     @Override
     public String toString() {
-        String str = name + "," + model;
+        String str = name + model;
         if (str.endsWith(",")){
             return name;
         }
