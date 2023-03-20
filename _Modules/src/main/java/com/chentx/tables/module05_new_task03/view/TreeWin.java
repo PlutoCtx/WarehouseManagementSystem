@@ -57,7 +57,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
     void get(){
         Database findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
-        findRecord.setSQL("select * from clggb");
+        findRecord.setSQL("select * from materialspecificationsheet");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
     }

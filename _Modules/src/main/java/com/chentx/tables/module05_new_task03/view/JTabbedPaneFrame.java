@@ -115,7 +115,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel3.add(boxH);
         panel3.add(button);
 
-        cargo.setCargoId(jl1.getText());
+        cargo.setCargoNumber(jl1.getText());
         cargo.setCargoName(jl2.getText());
 
         button.addActionListener(new ActionListener() {
@@ -160,10 +160,12 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     void get(){
         findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
-        findRecord.setSQL("select * from clggb");
+        findRecord.setSQL("select * from materialspecificationsheet");
         content02 = findRecord.getRecord();
         Logger.getGlobal().info(content02[0][1] + content02[0][2] + content02[0][3] + content02[0][4] + content02[0][5]);
+        Logger.getGlobal().info("this is JTabbedPaneFrame test");
         tableHead02 = findRecord.getColumnName();
+        Logger.getGlobal().info("failed ?");
         Logger.getGlobal().info(tableHead02[0] + tableHead02[1] + tableHead02[2] + tableHead02[3] + tableHead02[4]);
     }
 
@@ -203,7 +205,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      * 初始化table界面
      */
     public void initTable(){
-        findRecord.setSQL("SELECT * FROM clggb");
+        findRecord.setSQL("SELECT * FROM materialspecificationsheet");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
         table = new JTable(content,tableHead);

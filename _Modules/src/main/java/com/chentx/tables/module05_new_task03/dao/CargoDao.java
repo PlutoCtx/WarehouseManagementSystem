@@ -27,8 +27,8 @@ public class CargoDao {
         String sql = "UPDATE test SET cargoNumber = cargoNumber + ?, WHERE cargoId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setInt(1, cargo.getCargoNumber());
-        preparedStatement.setString(2, cargo.getCargoId());
+        preparedStatement.setString(1, cargo.getCargoNumber());
+        preparedStatement.setString(2, cargo.getModel());
         return preparedStatement.executeUpdate();
 
     }
@@ -45,9 +45,9 @@ public class CargoDao {
         String sql = "Insert INTO test VALUES (NULL, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setString(1, cargo.getCargoId());
+        preparedStatement.setString(1, cargo.getModel());
         preparedStatement.setString(2, cargo.getCargoName());
-        preparedStatement.setInt(3, cargo.getCargoNumber());
+        preparedStatement.setString(3, cargo.getCargoNumber());
         preparedStatement.setDouble(4, cargo.getCargoAvePrice());
         return preparedStatement.executeUpdate();
 

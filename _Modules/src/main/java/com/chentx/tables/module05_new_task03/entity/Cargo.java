@@ -18,10 +18,6 @@ import lombok.NoArgsConstructor;
 public class Cargo {
 
     /**
-     * 货号
-     */
-    String cargoNumber;
-    /**
      * 货名
      */
     String cargoName;
@@ -29,6 +25,10 @@ public class Cargo {
      * 型号
      */
     String model;
+    /**
+     * 货号
+     */
+    String cargoNumber;
     /**
      * 单位
      */
