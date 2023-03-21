@@ -91,6 +91,9 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     }
 
 
+    /**
+     * 初始化信息填写子界面
+     */
     public void initPreparedStatement(){
         panel3.setLayout(new FlowLayout());
 
@@ -117,7 +120,12 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
 
         cargo.setCargoNumber(jl1.getText());
         cargo.setCargoName(jl2.getText());
+        cargo.setNumberOfInventoryCargo(Integer.valueOf(jl3.getText()));
+        cargo.setTotalInventoryPrice(Double.valueOf(jl4.getText()));
 
+        /*
+         * 添加监听器，将文本框中的信息插入到数据库中
+         */
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -211,6 +219,9 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         table = new JTable(content,tableHead);
     }
 
+    /**
+     * 显示出一个主界面，包含了三个子界面的那种
+     */
     public void displayWindow(){
         // BorderLayout
         panel1.setLayout(new BorderLayout());

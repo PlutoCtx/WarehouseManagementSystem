@@ -26,7 +26,7 @@ public class Cargo {
      */
     String model;
     /**
-     * 货号
+     * 货号，用于划分货物类别
      */
     String cargoNumber;
     /**
