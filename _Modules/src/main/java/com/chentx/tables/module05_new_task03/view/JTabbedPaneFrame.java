@@ -57,6 +57,11 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     JLabel jl3 = new JLabel("数量");
     JLabel jl4 = new JLabel("单价");
 
+    JTextField jTextField1 = new JTextField(10);
+    JTextField jTextField2 = new JTextField(10);
+    JTextField jTextField3 = new JTextField(10);
+    JTextField jTextField4 = new JTextField(10);
+
     /**
      * 行
      */
@@ -68,7 +73,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     Box boxVTwo;
 
     Cargo cargo = new Cargo();
-
 
     Database findRecord = new Database();
     JTabbedPaneFrame(){
@@ -106,10 +110,15 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         boxVOne.add(jl3);
         boxVOne.add(jl4);
 
-        boxVTwo.add(new JTextField(10));
-        boxVTwo.add(new JTextField(10));
-        boxVTwo.add(new JTextField(10));
-        boxVTwo.add(new JTextField(10));
+        boxVTwo.add(jTextField1);
+        boxVTwo.add(jTextField2);
+        boxVTwo.add(jTextField3);
+        boxVTwo.add(jTextField4);
+
+//        String string1 = jTextField1.getText();
+//        String string2 = jTextField2.getText();
+//        String string3 = jTextField3.getText();
+//        String string4 = jTextField4.getText();
 
         boxH.add(boxVOne);
         boxH.add(Box.createHorizontalStrut(10));
@@ -118,31 +127,45 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel3.add(boxH);
         panel3.add(button);
 
-        cargo.setCargoNumber(jl1.getText());
-        cargo.setCargoName(jl2.getText());
-        cargo.setNumberOfInventoryCargo(Integer.valueOf(jl3.getText()));
-        cargo.setTotalInventoryPrice(Double.valueOf(jl4.getText()));
+//        if (string1.isEmpty() || string2.isEmpty() || string3.isEmpty() || string4.isEmpty()){
+//            if (string1.isEmpty()){
+//                JOptionPane.showMessageDialog(null, "货号为空");
+//            }
+//            if (string1.isEmpty()){
+//                JOptionPane.showMessageDialog(null, "货名为空");
+//            }
+//            if (string1.isEmpty()){
+//                JOptionPane.showMessageDialog(null, "数量为空");
+//            }
+//            if (string1.isEmpty()){
+//                JOptionPane.showMessageDialog(null, "单价为空");
+//            }
+//            frame.dispose();
+//            System.exit(0);
+//        }else {
+//            cargo.setCargoNumber(string1);
+//            cargo.setCargoName(string2);
+//            cargo.setNumberOfInventoryCargo(Integer.valueOf(string3));
+//            cargo.setTotalInventoryPrice(Double.valueOf(string4));
+//        }
 
         /*
          * 添加监听器，将文本框中的信息插入到数据库中
          */
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Connection con = null;
-                try {
-                    con = findRecord.getConnection();
-                    int addNum = cargoDao.add(con, cargo);
+        button.addActionListener(e -> {
+            Connection con = null;
+            try {
+                con = findRecord.getConnection();
+                int addNum = cargoDao.add(con, cargo);
 
-                    if (addNum >= 1) {
-                        JOptionPane.showMessageDialog(null, "添加成功");
-                    }else {
-                        JOptionPane.showMessageDialog(null, "插入失败");
-                    }
-                    con.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                if (addNum >= 1) {
+                    JOptionPane.showMessageDialog(null, "添加成功");
+                }else {
+                    JOptionPane.showMessageDialog(null, "插入失败");
                 }
+                con.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
     }
