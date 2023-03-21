@@ -24,15 +24,16 @@ public class CargoDao {
      * @throws SQLException how do I know
      */
     public int update(Connection connection, Cargo cargo) throws SQLException {
-        String sql = "UPDATE test SET cargoNumber = cargoNumber + ?, WHERE cargoId = ?";
+        String sql = "UPDATE test SET cargoNumber = cargoNumber + ? WHERE cargoId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setInt(1, cargo.getCargoNumber());
-        preparedStatement.setString(2, cargo.getCargoId());
+        preparedStatement.setInt(1, cargo.getNumberOfInventoryCargo());
+        preparedStatement.setString(2, cargo.getModel());
         return preparedStatement.executeUpdate();
 
     }
 
+    // 方法命名的不规范
 
     /**
      * 添加
@@ -42,12 +43,12 @@ public class CargoDao {
      * @throws SQLException how do I know
      */
     public int add(Connection connection, Cargo cargo) throws SQLException {
-        String sql = "Insert INTO test VALUES (NULL, ?, ?, ?, ?)";
+        String sql = "Insert INTO test(cargoId, cargoName,cargoNumber, cargoAvePrice) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setString(1, cargo.getCargoId());
+        preparedStatement.setString(1, cargo.getModel());
         preparedStatement.setString(2, cargo.getCargoName());
-        preparedStatement.setInt(3, cargo.getCargoNumber());
+        preparedStatement.setInt(3, cargo.getNumberOfInventoryCargo());
         preparedStatement.setDouble(4, cargo.getCargoAvePrice());
         return preparedStatement.executeUpdate();
 

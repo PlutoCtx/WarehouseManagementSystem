@@ -91,6 +91,9 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     }
 
 
+    /**
+     * 初始化信息填写子界面
+     */
     public void initPreparedStatement(){
         panel3.setLayout(new FlowLayout());
 
@@ -115,9 +118,14 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel3.add(boxH);
         panel3.add(button);
 
-        cargo.setCargoId(jl1.getText());
+        cargo.setCargoNumber(jl1.getText());
         cargo.setCargoName(jl2.getText());
+        cargo.setNumberOfInventoryCargo(Integer.valueOf(jl3.getText()));
+        cargo.setTotalInventoryPrice(Double.valueOf(jl4.getText()));
 
+        /*
+         * 添加监听器，将文本框中的信息插入到数据库中
+         */
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -160,10 +168,12 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     void get(){
         findRecord = new Database();
         findRecord.setDatabaseName("warehousemanagementsystem");
-        findRecord.setSQL("select * from clggb");
+        findRecord.setSQL("select * from materialspecificationsheet");
         content02 = findRecord.getRecord();
         Logger.getGlobal().info(content02[0][1] + content02[0][2] + content02[0][3] + content02[0][4] + content02[0][5]);
+        Logger.getGlobal().info("this is JTabbedPaneFrame test");
         tableHead02 = findRecord.getColumnName();
+        Logger.getGlobal().info("failed ?");
         Logger.getGlobal().info(tableHead02[0] + tableHead02[1] + tableHead02[2] + tableHead02[3] + tableHead02[4]);
     }
 
@@ -203,12 +213,15 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      * 初始化table界面
      */
     public void initTable(){
-        findRecord.setSQL("SELECT * FROM clggb");
+        findRecord.setSQL("SELECT * FROM materialspecificationsheet");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
         table = new JTable(content,tableHead);
     }
 
+    /**
+     * 显示出一个主界面，包含了三个子界面的那种
+     */
     public void displayWindow(){
         // BorderLayout
         panel1.setLayout(new BorderLayout());
