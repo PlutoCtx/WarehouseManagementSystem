@@ -17,6 +17,7 @@ import java.util.Objects;
  * since jdk17
  * @version 2022/12/20 18:06
  */
+
 public class LogOnFrame extends JFrame  implements InterfaceForm{
     private JPanel contentPane;
     private JTextField userNameText;
@@ -28,15 +29,12 @@ public class LogOnFrame extends JFrame  implements InterfaceForm{
      * @param args ignored
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    LogOnFrame frame = new LogOnFrame();
-                    frame.setVisible(true);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                LogOnFrame frame = new LogOnFrame();
+                frame.setVisible(true);
+            }catch (Exception e){
+                e.printStackTrace();
             }
         });
     }
@@ -58,7 +56,7 @@ public class LogOnFrame extends JFrame  implements InterfaceForm{
         setResizable(false);
         // 管理员登录
         setTitle("\u7BA1\u7406\u5458\u767B\u5F55");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(500,250,450,343);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));
@@ -80,23 +78,19 @@ public class LogOnFrame extends JFrame  implements InterfaceForm{
 
         passwordText = new JPasswordField();
 
+        // 登录
         JButton btnNewButton1 = new JButton("\u767B\u5F55");
-        btnNewButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new MainFrame().setVisible(true);
-            }
+        btnNewButton1.addActionListener(e -> {
+            dispose();
+            new MainFrame().setVisible(true);
         });
         btnNewButton1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/login.png"))));
 
+        // 重置
         JButton btnNewButton2 = new JButton("\u91CD\u7F6E");
-        btnNewButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                userNameText.setText("");
-                passwordText.setText("");
-            }
+        btnNewButton2.addActionListener(e -> {
+            userNameText.setText("");
+            passwordText.setText("");
         });
         btnNewButton2.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/reset.png"))));
 
