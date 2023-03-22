@@ -10,8 +10,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -48,7 +46,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
     String [][] content02 = null;
     JTextArea showText;
     JTable table;
-
 
     JButton button = new JButton("确定");
     CargoDao cargoDao = null;
@@ -115,11 +112,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         boxVTwo.add(jTextField3);
         boxVTwo.add(jTextField4);
 
-//        String string1 = jTextField1.getText();
-//        String string2 = jTextField2.getText();
-//        String string3 = jTextField3.getText();
-//        String string4 = jTextField4.getText();
-
         boxH.add(boxVOne);
         boxH.add(Box.createHorizontalStrut(10));
         boxH.add(boxVTwo);
@@ -127,27 +119,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         panel3.add(boxH);
         panel3.add(button);
 
-//        if (string1.isEmpty() || string2.isEmpty() || string3.isEmpty() || string4.isEmpty()){
-//            if (string1.isEmpty()){
-//                JOptionPane.showMessageDialog(null, "货号为空");
-//            }
-//            if (string1.isEmpty()){
-//                JOptionPane.showMessageDialog(null, "货名为空");
-//            }
-//            if (string1.isEmpty()){
-//                JOptionPane.showMessageDialog(null, "数量为空");
-//            }
-//            if (string1.isEmpty()){
-//                JOptionPane.showMessageDialog(null, "单价为空");
-//            }
-//            frame.dispose();
-//            System.exit(0);
-//        }else {
-//            cargo.setCargoNumber(string1);
-//            cargo.setCargoName(string2);
-//            cargo.setNumberOfInventoryCargo(Integer.valueOf(string3));
-//            cargo.setTotalInventoryPrice(Double.valueOf(string4));
-//        }
 
         /*
          * 添加监听器，将文本框中的信息插入到数据库中

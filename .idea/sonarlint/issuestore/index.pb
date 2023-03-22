@@ -13,3 +13,11 @@ P_Modules/src/main/java/com/chentx/tables/module05_new_task03/entity/Company.jav
 R_Modules/src/main/java/com/chentx/tables/module05_new_task03/entity/Warehouse.java,1\3\132f395ff0f31d970d1c3ecfac33acb460e2795f
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+v
+F_Modules/src/main/java/com/chentx/tables/module05_new_task03/Main.java,d\7\d79c726dc38acacd1bb64b0abdc1b30abc0d2e6a
+~
+N_Modules/src/main/java/com/chentx/tables/module05_new_task03/view/SetFont.java,5\5\55135a3a73a30400e14b37f337fe7c45301bca61
+~
+N_Modules/src/main/java/com/chentx/tables/module05_new_task03/entity/Cargo.java,8\f\8f8ab3820b594538466c35506a232303be4dc97b
+~
+N_Modules/src/main/java/com/chentx/tables/module05_new_task03/dao/CargoDao.java,8\7\87e3e46024b1b093eb39a1469dba4dc3ccf5cd14
