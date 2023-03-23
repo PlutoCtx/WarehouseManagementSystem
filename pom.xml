@@ -13,6 +13,7 @@
         <module>_02JTree</module>
         <module>_03MainSub-Interface</module>
         <module>_Modules</module>
+        <module>_04MenuItem</module>
     </modules>
 
     <properties>
