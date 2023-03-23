@@ -16,7 +16,7 @@ public class Database {
     /**
      * 数据库
      */
-    private String url = "jdbc:mysql://localhost:3306/sys" +
+    private String url = "jdbc:mysql://localhost:3306/warehousemanagementsystem" +
             "?useUnicode=true" +
             "&characterEncoding=utf8" +
             "&useSSL=false" +
