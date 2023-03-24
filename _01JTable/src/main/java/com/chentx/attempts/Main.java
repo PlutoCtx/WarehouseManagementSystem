@@ -24,7 +24,6 @@ public class Main {
 
         Query findRecord = new  Query();
         findRecord.setSql("SELECT * FROM clggb");
-        // findRecord.setDatabaseName("warehousemanagementsystem");
 
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
