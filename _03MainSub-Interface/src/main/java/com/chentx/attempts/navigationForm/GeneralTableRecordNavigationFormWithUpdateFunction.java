@@ -5,6 +5,8 @@ import javax.swing.*;
 /**
  * 带有更新功能的表记录 导航窗体
  *
+ * 因为没有装sqlserver所以这个包下面的代码其实并没有被我所运行
+ *
  * @author Max chenmochen1954@163.com
  * since jdk17
  * @version 2023/2/17 11:14
