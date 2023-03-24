@@ -26,6 +26,7 @@ public class Main extends JFrame {
         setVisible(true);
         setBounds(50,50,1100,900);
         init();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
