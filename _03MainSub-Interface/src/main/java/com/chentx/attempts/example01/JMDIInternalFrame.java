@@ -30,9 +30,10 @@ public class JMDIInternalFrame extends JFrame implements ActionListener {
         desktopPane = new JDesktopPane();
         contentPane.add(desktopPane);
         // 最大化
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        show();
+        setExtendedState(Frame.MAXIMIZED_BOTH);
+        setVisible(true);
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
@@ -43,10 +44,10 @@ public class JMDIInternalFrame extends JFrame implements ActionListener {
      * 产生一个可关闭、可改变大小、具有标题、可最大化与最小化的Internal Frame.
      * @param e the event to be processed
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         JInternalFrame internalFrame = new JInternalFrame("Internal Frame " + (count++), true, true, true, true);
-//        internalFrame.setLocation(20, 20);
-//        internalFrame.setSize(200, 200);
+
         internalFrame.setVisible(true);
         //取得JInternalFrame的Content Pane,用以加入新的组件。
         Container icontentPane = internalFrame.getContentPane();

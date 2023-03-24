@@ -1,0 +1,23 @@
+
+y
+I_02JTree/src/main/java/com/chentx/attempts/onlineexamples/ex06/Hello.java,5\6\567a0e726ea58eebc4f6afe9ad02cff4fe0ab5b3
+f
+6_01JTable/src/main/java/com/chentx/attempts/Query.java,c\d\cde10f1c6fe5788a53e113ccf4df0e72307e7ddc
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+ƒ
+S_03MainSub-Interface/src/main/java/com/bookmanager/view/BookTypeManageInterFrm.java,4\b\4b8a45ae2840c3d86650322d2aec8ae35f74e0d5
+w
+G_03MainSub-Interface/src/main/java/com/bookmanager/dao/BookTypeDao.java,8\7\872ed6e87d88ab8edca935d0367351839f4548e8
+v
+F_03MainSub-Interface/src/main/java/com/bookmanager/view/MainFrame.java,d\b\db612556b3f99414aeb4f77990cb4b6725a3598e
+|
+L_03MainSub-Interface/src/main/java/com/bookmanager/view/BookAddInterFrm.java,8\8\8843dc91100e778a2f41984c75faa22dee7934e1
+
+O_03MainSub-Interface/src/main/java/com/bookmanager/view/BookManageInterFrm.java,a\f\af6d80bae097e7ce96d8d7d83144c0c28f976582
+‚
+R_Modules/src/test/java/com/chentx/tables/module05_new_task03/dao/CargoDaoTest.java,0\1\01413f03e696437f60dd7f1625aa752ee2571a34
+r
+B_03MainSub-Interface/src/main/java/com/bookmanager/model/Book.java,c\a\ca44f6516ee805617dfb965fe3ba0ae069e5d9a7
+v
+F_02JTree/src/main/java/com/chentx/attempts/attempt01/DBConnection.java,8\0\80d8aa728037f1375f241ec62ebfa51efc4ccec1

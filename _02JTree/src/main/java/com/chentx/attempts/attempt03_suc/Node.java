@@ -52,7 +52,7 @@ public class Node {
     @Override
     public String toString() {
         String str = name + "," + model;
-        if (str.endsWith(",")){
+        if (model == null || str.endsWith(",")){
             return name;
         }
         return str;
