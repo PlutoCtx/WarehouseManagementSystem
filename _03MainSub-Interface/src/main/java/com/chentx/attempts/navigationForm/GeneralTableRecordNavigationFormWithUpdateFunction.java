@@ -1,12 +1,6 @@
 package com.chentx.attempts.navigationForm;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
-import java.util.Vector;
-import java.util.logging.Logger;
 
 /**
  * 带有更新功能的表记录 导航窗体
@@ -18,7 +12,7 @@ import java.util.logging.Logger;
 public class GeneralTableRecordNavigationFormWithUpdateFunction {
 
     /**
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
