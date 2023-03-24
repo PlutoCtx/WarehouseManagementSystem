@@ -1,12 +1,13 @@
 package com.chentx.attempts;
 
+import javax.swing.*;
+
 /**
  * @author MaxBrooks chentingxian195467@163.com
  * @version 2023/2/15 20:03
  * @since JDK17
  */
 
-import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         // 返回全部字段名称
@@ -23,7 +24,6 @@ public class Main {
 
         Query findRecord = new  Query();
         findRecord.setSql("SELECT * FROM clggb");
-        // findRecord.setDatabaseName("warehousemanagementsystem");
 
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
