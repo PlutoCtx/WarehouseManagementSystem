@@ -27,7 +27,6 @@ public class Main extends JFrame {
         setBounds(50,50,1100,900);
         init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
     }
 
     private void init() throws Exception {
