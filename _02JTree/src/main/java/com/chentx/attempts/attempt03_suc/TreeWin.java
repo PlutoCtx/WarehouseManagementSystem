@@ -40,7 +40,7 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
         layerNode[0] = new DefaultMutableTreeNode(new Node(content[0]));
         for(int i = 1,n = content.length;i < n;i++){
             for(int j = 0,m = content[i].length;j < m;j++){
-                content[i][j] = content[i][j].trim();
+                content[i][2] = content[i][2].trim();
             }
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Node(content[i]));
             String s = content[i][2];

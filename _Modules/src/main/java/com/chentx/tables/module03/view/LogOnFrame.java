@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.util.Enumeration;
 import java.util.Objects;

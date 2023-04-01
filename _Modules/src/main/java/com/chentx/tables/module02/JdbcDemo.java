@@ -24,7 +24,7 @@ public class JdbcDemo {
 
         Connection conn = null;
         Statement stmt = null;
-        ResultSet rs = null;
+        ResultSet resultSet = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -36,22 +36,30 @@ public class JdbcDemo {
         try {
             conn = DriverManager.getConnection(url, user, password);
             stmt = conn.createStatement();
-            queryAndDisplay(stmt, rs);
-            stmt.executeUpdate("INSERT INTO inboundandoutboundtable VALUES (, 'FWE', 'WEF', 'RTH', 15, 'REG', 15.2, 12.3, 'UJ', 'IK', 111, , 1, 'ERHY', 'QEF')");
+            queryAndDisplay(stmt, resultSet);
+            stmt.executeUpdate(
+                    "INSERT INTO " +
+                    "inboundtable(checkId, businessType, warehouseNumber, " +
+                    "itemNumber, transactionNumber, unit, averagePrice, " +
+                    "totalInventoryPrice, vendorNumber, vendorName, done, " +
+                    "warehouseKeeperNumber, warehouseManagerNumber) " +
+                    "VALUES ('asd', 'FWE', 'WEF', 'RTH', 15, 'REG', " +
+                    "15.2, 12.3, 'UJ', 'IK', 1, 'ERHY', 'QEF')"
+            );
 
-            System.out.println("添加数据后的信息：");
-            queryAndDisplay(stmt, rs);
+            Logger.getGlobal().info("添加数据后的信息：");
+            queryAndDisplay(stmt, resultSet);
 
-            stmt.executeUpdate("DELETE FROM inboundandoutboundtable WHERE name = 'FWE'");
-            System.out.println("删除数据后的信息：");
-            queryAndDisplay(stmt, rs);
+            stmt.executeUpdate("DELETE FROM inboundtable WHERE businessType = 'FWE'");
+            Logger.getGlobal().info("删除数据后的信息：");
+            queryAndDisplay(stmt, resultSet);
 
         }catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            if (rs != null){
+            if (resultSet != null){
                 try {
-                    rs.close();
+                    resultSet.close();
                 }catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -73,36 +81,15 @@ public class JdbcDemo {
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
 
-    private static void queryAndDisplay(Statement stmt, ResultSet rs) throws SQLException {
-        rs = stmt.executeQuery("SELECT * FROM inboundandoutboundtable");
-        while (rs.next()) {
-            System.out.println(rs.getInt(1));
-            System.out.println(rs.getString(2));
+    private static void queryAndDisplay(Statement stmt, ResultSet resultSet) throws SQLException {
+        resultSet = stmt.executeQuery("SELECT * FROM inboundtable");
+        while (resultSet.next()) {
+            Logger.getGlobal().info("" + resultSet.getInt(1));
+            Logger.getGlobal().info("" + resultSet.getString(2));
         }
     }
 
