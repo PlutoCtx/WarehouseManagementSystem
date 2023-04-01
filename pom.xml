@@ -14,6 +14,7 @@
         <module>_03MainSub-Interface</module>
         <module>_Modules</module>
         <module>_04MenuItem</module>
+        <module>_05DatabaseItems</module>
     </modules>
 
     <properties>
