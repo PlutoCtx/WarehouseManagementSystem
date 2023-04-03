@@ -36,7 +36,7 @@ public class Main extends JFrame {
         Database database = new Database();
         Connection connection = database.getConnection();
 
-        String sql = "select * from men";
+        String sql = "select * from menu";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
