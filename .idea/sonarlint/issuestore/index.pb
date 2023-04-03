@@ -19,5 +19,3 @@ H
 _05DatabaseItems/pom.xml,f\1\f10cedfd890313f44249caabc80a4a8faaa5021a
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-q
-A_05DatabaseItems/src/main/java/com/bookmanager/database/Uuid.java,f\3\f3ac48b4e2a7516ef1b527efbe98432a3a77ef6d
