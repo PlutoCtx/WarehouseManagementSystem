@@ -1,7 +1,6 @@
 package com.bookmanager.mapper;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
@@ -23,7 +22,6 @@ public class MapMenu extends JMenuItem implements ActionListener {
 
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         MenuItemFunction menuItemFunction;
@@ -35,22 +33,5 @@ public class MapMenu extends JMenuItem implements ActionListener {
             Logger.getGlobal().info("窗口:(" + winClassName + ")没定义!");
             e2.printStackTrace();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
