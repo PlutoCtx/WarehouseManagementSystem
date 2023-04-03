@@ -33,7 +33,6 @@ public class CargoDao {
 
     }
 
-    // 方法命名的不规范
 
     /**
      * 添加
@@ -50,6 +49,38 @@ public class CargoDao {
         preparedStatement.setString(2, cargo.getCargoName());
         preparedStatement.setInt(3, cargo.getNumberOfInventoryCargo());
         preparedStatement.setDouble(4, cargo.getCargoAvePrice());
+        return preparedStatement.executeUpdate();
+
+    }
+
+
+    /**
+     * 经理确认货物出库
+     * @param connection    数据库连接
+     * @param string    确认状态
+     * @return  修改的条数，只要不是1， 就说明修改成功
+     * @throws SQLException how do I know
+     */
+    public int checkOut(Connection connection, String string) throws SQLException {
+        String sql = "INSERT INTO test(outCheck) VALUES (?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, string);
+        return preparedStatement.executeUpdate();
+
+    }
+
+
+    /**
+     * 经理确认货物出库
+     * @param connection    数据库连接
+     * @param string    确认状态
+     * @return  修改的条数，只要不是1， 就说明修改成功
+     * @throws SQLException how do I know
+     */
+    public int checkIn(Connection connection, String string) throws SQLException {
+        String sql = "INSERT INTO test(inCheck) VALUES (?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, string);
         return preparedStatement.executeUpdate();
 
     }
