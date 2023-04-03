@@ -153,7 +153,6 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
         tree.addTreeSelectionListener(this);
         showText = new JTextArea();
         panel1.setLayout(new GridLayout(1,2));
-
     }
 
     /**
