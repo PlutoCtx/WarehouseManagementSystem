@@ -29,7 +29,7 @@ public class DBConnector {
     }
 
     public List<Material> queryNodeByHH(String hh) {
-        String sqlFormat = "select * from clggb where length(hh) = %d and hh like '%s%%'";
+        String sqlFormat = "select * from materialSpecificationSheet where length(hh) = %d and itemNumber like '%s%%'";
 
         int nodeHHLength = hh.length() + 2;
         List<Material> materialList = new LinkedList<>();
@@ -40,10 +40,10 @@ public class DBConnector {
 
             while (resultSet.next()) {
                 Material material = new Material();
-                material.setMc(resultSet.getString("mc"));
-                material.setGgxh(resultSet.getString("ggxh"));
-                material.setHh(resultSet.getString("hh"));
-                material.setDw(resultSet.getString("dw"));
+                material.setMc(resultSet.getString("nameOfCargo"));
+                material.setGgxh(resultSet.getString("model"));
+                material.setHh(resultSet.getString("itemNumber"));
+                material.setDw(resultSet.getString("unit"));
                 materialList.add(material);
             }
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class DBConnector {
     }
 
     public Material queryMaterialByHH(String hh) {
-        String sqlFormat = "select * from clggb where hh = '%s'";
+        String sqlFormat = "select * from materialSpecificationSheet where itemNumber = '%s'";
 
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -62,10 +62,10 @@ public class DBConnector {
 
             if (resultSet.next()) {
                 Material material = new Material();
-                material.setMc(resultSet.getString("mc"));
-                material.setGgxh(resultSet.getString("ggxh"));
-                material.setHh(resultSet.getString("hh"));
-                material.setDw(resultSet.getString("dw"));
+                material.setMc(resultSet.getString("nameOfCargo"));
+                material.setGgxh(resultSet.getString("model"));
+                material.setHh(resultSet.getString("itemNumber"));
+                material.setDw(resultSet.getString("unit"));
                 return material;
             }
         } catch (Exception e) {

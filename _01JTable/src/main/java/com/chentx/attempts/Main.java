@@ -23,7 +23,7 @@ public class Main {
 
 
         Query findRecord = new  Query();
-        findRecord.setSql("SELECT * FROM clggb");
+        findRecord.setSql("SELECT * FROM materialSpecificationSheet");
 
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();

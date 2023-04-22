@@ -19,7 +19,7 @@ public class DBConnection {
     /**
      * SQL语句
      */
-    String sql = "SELECT * FROM clggb";
+    String sql = "SELECT * FROM materialSpecificationSheet";
     /**
      * 全部字段（列）名
      */

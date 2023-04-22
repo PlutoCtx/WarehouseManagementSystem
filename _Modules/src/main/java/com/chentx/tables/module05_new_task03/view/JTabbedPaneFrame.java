@@ -160,8 +160,8 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      */
     void get(){
         findRecord = new Database();
-        findRecord.setDatabaseName("warehousemanagementsystem");
-        findRecord.setSQL("select * from materialspecificationsheet");
+        findRecord.setDatabaseName("WarehouseManagementSystem");
+        findRecord.setSQL("select * from MaterialSpecificationSheet");
         content02 = findRecord.getRecord();
         Logger.getGlobal().info(content02[0][1] + content02[0][2] + content02[0][3] + content02[0][4] + content02[0][5]);
         Logger.getGlobal().info("this is JTabbedPaneFrame test");
@@ -190,7 +190,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
-        DefaultMutableTreeNode node=(DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
         if(node == null) {
             return;
         }
@@ -206,7 +206,7 @@ public class JTabbedPaneFrame implements TreeSelectionListener {
      * 初始化table界面
      */
     public void initTable(){
-        findRecord.setSQL("SELECT * FROM materialspecificationsheet");
+        findRecord.setSQL("SELECT * FROM MaterialSpecificationSheet");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
         table = new JTable(content,tableHead);

@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 /**
  * 测试界面
+ * 本代码有一点问题，在程序运行之后，界面会显示，但是菜单栏不会显示，只有在调整了本界面的大小后才会出现菜单栏
+ * 本菜单栏是活菜单，会根据数据库中的菜单栏表的变化而改变
  *
  * @author MaxBrooks 15905898514@163.com
  * @version 2023/3/23 23:34
@@ -47,7 +49,7 @@ public class Main extends JFrame {
                 String code = resultSet.getString("hh").trim();
 
                 int length = code.length() / 2 - 1;
-                if (resultSet.getInt("ismenu") == 1){
+                if (resultSet.getInt("isMenu") == 1){
                     menu[length] = new JMenu(title);
                     if (length == 0){
                         menuBar.add(menu[length]);

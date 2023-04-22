@@ -111,7 +111,7 @@ class Transaction19 {
             result[i - 1] = rs.getString(i);
         }
         currentRow = rs.getRow();
-        System.out.println(rs.getRow());
+        Logger.getGlobal().info(String.valueOf(rs.getRow()));
         return result;
     }
 
