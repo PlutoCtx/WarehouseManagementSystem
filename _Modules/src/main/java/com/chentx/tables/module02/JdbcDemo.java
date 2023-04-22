@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class JdbcDemo {
     public static void main(String[] args) {
 
-        String databaseName = "warehousemanagementsystem";
+        String databaseName = "warehouseManagementSystem";
         String url = "jdbc:mysql://localhost:3306/" + databaseName + "?useSSL=true&serverTimezone=GMT&characterEncoding=utf-8";
         String user = "root";
         String password = "Shangxiao111";

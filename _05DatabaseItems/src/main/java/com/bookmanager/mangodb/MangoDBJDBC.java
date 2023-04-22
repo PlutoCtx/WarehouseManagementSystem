@@ -64,15 +64,15 @@ public class MangoDBJDBC {
         MongoDatabase database = mongo.getDatabase("test");
         // 检索集合
         MongoCollection<Document> collection = database.getCollection("tutorial");
-        System.out.println("成功选择了集合 tutorial");
+        Logger.getGlobal().info("成功选择了集合 tutorial");
         // 删除文档
         collection.deleteOne(Filters.eq("title", "MongoDB"));
-        System.out.println("文档删除成功...");
+        Logger.getGlobal().info("文档删除成功...");
         // 更新后检索文档
         // 获取 iterable 对象
         FindIterable<Document> iterDoc = collection.find();
-        int i = 1;
         // 获取迭代器
+        int i = 0;
         Iterator it = iterDoc.iterator();
         while (it.hasNext()) {
             Logger.getGlobal().info((String) it.next());

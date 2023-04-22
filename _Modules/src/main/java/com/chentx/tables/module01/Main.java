@@ -20,7 +20,7 @@ public class Main {
         Statement sql;
         ResultSet rs;
 
-        con = DBConnector.connectionDB("warehousemanagementsystem", "root", "Shangxiao111");
+        con = DBConnector.connectionDB("warehouseManagementSystem", "root", "Shangxiao111");
         if (con == null) {
             return;
         }
