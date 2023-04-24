@@ -18,8 +18,9 @@ public class Database {
     public Database() {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch(Exception e){
+            Logger.getGlobal().warning("warning:" + e.getMessage());
         }
-        catch(Exception e){}
     }
 
     public void setDatabaseName(String s) {
