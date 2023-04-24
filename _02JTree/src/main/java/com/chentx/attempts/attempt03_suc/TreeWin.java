@@ -53,15 +53,15 @@ public class TreeWin extends JFrame implements TreeSelectionListener {
 
     void get(){
         Database findRecord = new Database();
-        findRecord.setDatabaseName("warehousemanagementsystem");
+        findRecord.setDatabaseName("warehouseManagementSystem");
         findRecord.setSQL("select * from materialSpecificationSheet");
         content = findRecord.getRecord();
         tableHead = findRecord.getColumnName();
     }
 
-    void setalter(int c,DefaultMutableTreeNode s){
-        layerNode[c] = s;
-    }
+//    void setalter(int c,DefaultMutableTreeNode s){
+//        layerNode[c] = s;
+//    }
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
