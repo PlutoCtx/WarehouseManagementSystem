@@ -55,8 +55,6 @@ u
 E_07CSArchitecture/src/main/java/org/example/Example02/CS/FindWin.java,d\0\d0736c762d3b5d986a4fe28d56149be9c04e39a7
 {
 K_07CSArchitecture/src/main/java/org/example/Example02/tool/Get_Connect.java,3\e\3ea81ac22c1930ed8147a1d702502afcb0498234
-v
-F_07CSArchitecture/src/main/java/org/example/Example02/CS/In_Frame.java,a\d\ade84dcdb2bad4c17896777616a8fdb66995715f
 y
 I_07CSArchitecture/src/main/java/org/example/Example02/biao/In_Record.java,7\0\703809ff8403572e46f8449b04ba4a8372d09655
 w
@@ -65,8 +63,6 @@ y
 I_07CSArchitecture/src/main/java/org/example/Example02/biao/Inventory.java,f\2\f2ff3b0d50e098bef5a8cbf83b10c6e9615413e5
 |
 L_07CSArchitecture/src/main/java/org/example/Example02/sev/Inventory_sev.java,e\3\e3407de47baad96931c08dcf845376abf60bdcd6
-s
-C_07CSArchitecture/src/main/java/org/example/Example02/CS/InWin.java,d\5\d545cb3935e8f0df53ae696248cc734273a7823a
 r
 B_07CSArchitecture/src/main/java/org/example/Example02/CS/Item.java,0\7\073cab5b86cf8da26cdd13fcd0c16ca9ca762018
 o
@@ -75,8 +71,6 @@ o
 W_Modules/src/main/java/com/chentx/tables/module05_new_task03/view/JTabbedPaneFrame.java,7\c\7c509961ce30c7fbd11f86a13fdf317c83e8b691
 e
 5_01JTable/src/main/java/com/chentx/attempts/Main.java,9\4\942adb5de45f00862c106f606eaec5c553dd8791
-h
-8_04MenuItem/src/main/java/com/bookmanager/view/Main.java,2\d\2d51b0258488ef09bf015fef4b8030926f83b9b0
 k
 ;_Modules/src/main/java/com/chentx/tables/module01/Main.java,7\1\71318d81b3a3f4d464d5c0f7c221cf6ea9175ced
 x

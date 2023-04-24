@@ -21,38 +21,45 @@ import java.sql.SQLException;
 
 public class Main extends JFrame {
 
-    public JMenuBar menuBar = new JMenuBar();
+    final JMenuBar jMenuBar = new JMenuBar();
 
+    /**
+     * 主方法，其实就是再一次进行封装
+     * @throws Exception only God knows it
+     */
     public Main() throws Exception {
-        super("测试界面");
+        super("仓库管理系统");
         setVisible(true);
-        setBounds(50,50,1100,900);
+        setBounds(100,100,1100,900);
         init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    /**
+     * 初始化界面
+     * @throws Exception how do I know
+     */
     private void init() throws Exception {
-
+        // 初始化菜单栏，有四个主菜单项
         JMenu[] menu = new JMenu[4];
 
         Database database = new Database();
         Connection connection = database.getConnection();
 
-        String sql = "select * from menu";
+        String sql = "SELECT * FROM menu";
+        try( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 String title = resultSet.getString("title");
-                String code = resultSet.getString("hh").trim();
+                String code = resultSet.getString("itemNumber").trim();
 
                 int length = code.length() / 2 - 1;
                 if (resultSet.getInt("isMenu") == 1){
                     menu[length] = new JMenu(title);
                     if (length == 0){
-                        menuBar.add(menu[length]);
+                        jMenuBar.add(menu[length]);
                     }else {
                         menu[length - 1].add(menu[length]);
                     }
@@ -64,9 +71,11 @@ public class Main extends JFrame {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            database.closeConnection(connection);
+            connection.close();
         }
-        connection.close();
-        setJMenuBar(menuBar);
+        setJMenuBar(jMenuBar);
     }
 
     public static void main(String[] args) throws Exception {

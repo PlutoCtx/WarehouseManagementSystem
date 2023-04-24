@@ -1,8 +1,11 @@
 package com.bookmanager.mapper;
 
+import com.bookmanager.view.InBoundFrame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 
 /**
@@ -25,9 +28,10 @@ public class MapMenu extends JMenuItem implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         MenuItemFunction menuItemFunction;
+        Class clazz = null;
         try {
-            Class cs = Class.forName("CS" + winClassName);
-            menuItemFunction = (MenuItemFunction) cs.newInstance();
+            clazz = Class.forName("com.bookmanager.view." + winClassName);
+            menuItemFunction = (MenuItemFunction) clazz.newInstance();
             menuItemFunction.execute(this);
         }catch (Exception e2) {
             Logger.getGlobal().info("窗口:(" + winClassName + ")没定义!");
