@@ -1,11 +1,10 @@
-package com.bookmanager.view;
+package com.chentx.warehouse.view;
 
-import com.bookmanager.mapper.MapMenu;
-import com.bookmanager.mapper.MenuItemFunction;
-import com.bookmanager.utils.Database;
+
+import com.chentx.warehouse.mapper.MapMenu;
+import com.chentx.warehouse.utils.Database;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ import java.sql.SQLException;
  * @since JDK17
  */
 
-public class Main extends JFrame implements MenuItemFunction {
+public class Main extends JFrame {
 
     final JMenuBar jMenuBar = new JMenuBar();
 
@@ -34,12 +33,11 @@ public class Main extends JFrame implements MenuItemFunction {
         init();
         setVisible(true);
         setBounds(100,100,1100,900);
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
-     * 初始化界面
+     * 初始化界面，菜单栏
      * @throws Exception how do I know
      */
     private void init() throws Exception {
@@ -50,7 +48,7 @@ public class Main extends JFrame implements MenuItemFunction {
         Connection connection = database.getConnection();
 
         String sql = "SELECT * FROM menu";
-        try( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -83,11 +81,5 @@ public class Main extends JFrame implements MenuItemFunction {
 
     public static void main(String[] args) throws Exception {
         new Main();
-    }
-
-    @Override
-    public void execute(JMenuItem src) {
-        // 设置JFrame最大化
-        this.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 }
