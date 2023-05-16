@@ -1,4 +1,4 @@
-package com.bookmanager.utils;
+package com.chentx.warehouse.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +34,6 @@ public class Database {
      * 驱动名称
      */
     private static final String JDBC_NAME = "com.mysql.cj.jdbc.Driver";
-
     /**
      * 获取数据库连接
      * @return  返回连接
@@ -44,7 +43,6 @@ public class Database {
         Class.forName(JDBC_NAME);
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
-
     /**
      * 关闭数据库连接
      * @param connection    数据库连接

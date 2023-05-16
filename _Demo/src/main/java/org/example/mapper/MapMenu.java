@@ -1,11 +1,8 @@
-package com.bookmanager.mapper;
-
-import com.bookmanager.view.InBoundFrame;
+package org.example.mapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 
 /**
@@ -30,7 +27,7 @@ public class MapMenu extends JMenuItem implements ActionListener {
         MenuItemFunction menuItemFunction;
         Class clazz = null;
         try {
-            clazz = Class.forName("com.bookmanager.view." + winClassName);
+            clazz = Class.forName("org.example.operation." + winClassName);
             menuItemFunction = (MenuItemFunction) clazz.newInstance();
             menuItemFunction.execute(this);
         }catch (Exception e2) {

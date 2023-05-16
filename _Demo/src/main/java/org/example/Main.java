@@ -1,8 +1,7 @@
-package com.bookmanager.view;
+package org.example;
 
-import com.bookmanager.mapper.MapMenu;
-import com.bookmanager.mapper.MenuItemFunction;
-import com.bookmanager.utils.Database;
+import org.example.mapper.MapMenu;
+import org.example.utils.Database;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,36 +9,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /**
- * 测试界面
- * 本代码有一点问题，在程序运行之后，界面会显示，但是菜单栏不会显示，只有在调整了本界面的大小后才会出现菜单栏
- * 本菜单栏是活菜单，会根据数据库中的菜单栏表的变化而改变
+ * 主窗体
  *
- * @author MaxBrooks 15905898514@163.com
- * @version 2023/3/23 23:34
- * @since JDK17
+ * @author Max chenmochen1954@163.com
+ * since jdk17
+ * @version 2022/12/21 9:55
  */
-
-public class Main extends JFrame implements MenuItemFunction {
-
+public class Main extends JFrame{
     final JMenuBar jMenuBar = new JMenuBar();
 
+
     /**
-     * 主方法，其实就是再一次进行封装
-     * @throws Exception only God knows it
+     * Create the frame.
      */
     public Main() throws Exception {
-        super("仓库管理系统");
-        init();
-        setVisible(true);
-        setBounds(100,100,1100,900);
-
+        // 仓库管理系统
+        setTitle("仓库管理系统");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // 默认最小化界面大小
+        setBounds(100, 100, 450, 300);
+        // 打开时自动最大化界面
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
+        init();
     }
 
     /**
-     * 初始化界面
+     * 初始化界面的菜单栏
      * @throws Exception how do I know
      */
     private void init() throws Exception {
@@ -50,7 +48,7 @@ public class Main extends JFrame implements MenuItemFunction {
         Connection connection = database.getConnection();
 
         String sql = "SELECT * FROM menu";
-        try( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -66,7 +64,7 @@ public class Main extends JFrame implements MenuItemFunction {
                     }else {
                         menu[length - 1].add(menu[length]);
                     }
-                }else {
+                } else {
                     String className = resultSet.getString("classname");
                     MapMenu item = new MapMenu(title, className);
                     menu[length - 1].add(item);
@@ -81,13 +79,9 @@ public class Main extends JFrame implements MenuItemFunction {
         setJMenuBar(jMenuBar);
     }
 
+
     public static void main(String[] args) throws Exception {
-        new Main();
+        new Main().setVisible(true);
     }
 
-    @Override
-    public void execute(JMenuItem src) {
-        // 设置JFrame最大化
-        this.setExtendedState(Frame.MAXIMIZED_BOTH);
-    }
 }

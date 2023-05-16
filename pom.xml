@@ -16,7 +16,9 @@
         <module>_04MenuItem</module>
         <module>_05DatabaseItems</module>
         <module>_06DBNavigation</module>
-        <module>_07CSArchitecture</module>
+        <module>_08ClientServerInterface</module>
+        <module>_Demo-HuangBC</module>
+        <module>_Demo</module>
     </modules>
 
     <properties>
