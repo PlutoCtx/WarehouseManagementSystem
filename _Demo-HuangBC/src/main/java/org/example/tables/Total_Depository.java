@@ -1,5 +1,8 @@
 package org.example.tables;
 
+/**
+ * @author chent
+ */
 public class Total_Depository {//总仓
     private int id;
     private String pno;
@@ -7,8 +10,11 @@ public class Total_Depository {//总仓
     private double price;
     private double sum_price;
 
-    public Total_Depository(int id,String pno,int num,double price,double sum_price)
-    {
+    public Total_Depository(int id,
+                            String pno,
+                            int num,
+                            double price,
+                            double sum_price) {
         this.id=id;
         this.pno=pno;
         this.num=num;

@@ -6,6 +6,9 @@ import org.example.tool.DBConnect;
 
 import java.sql.SQLException;
 
+/**
+ * @author chent
+ */
 public class Inventory_sev {
     public static void Inventory(int id) {
 

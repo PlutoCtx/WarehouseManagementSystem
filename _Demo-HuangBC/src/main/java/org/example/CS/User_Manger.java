@@ -2,6 +2,9 @@ package org.example.CS;
 
 import javax.swing.*;
 
+/**
+ * @author chent
+ */
 public class User_Manger extends In_Frame implements MenuItemFuction{
     @Override
     public void execute(JMenuItem src) {

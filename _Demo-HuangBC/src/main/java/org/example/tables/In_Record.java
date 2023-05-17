@@ -11,8 +11,15 @@ public class In_Record {//进货 退货
     private int vs;
     private int checked;
 
-    public In_Record(int id,String cname,String pno,int num,double price,double sum_price,int bj,int vs,int checked)
-    {
+    public In_Record(int id,
+                     String cname,
+                     String pno,
+                     int num,
+                     double price,
+                     double sum_price,
+                     int bj,
+                     int vs,
+                     int checked) {
         this.id=id;
         this.cname=cname;
         this.pno=pno;
@@ -23,8 +30,15 @@ public class In_Record {//进货 退货
         this.vs=vs;
         this.checked=checked;
     }
-    public In_Record(String id,String cname,String pno,String num,String price,String sum_price,String bj,String vs,String checked)
-    {
+    public In_Record(String id,
+                     String cname,
+                     String pno,
+                     String num,
+                     String price,
+                     String sum_price,
+                     String bj,
+                     String vs,
+                     String checked) {
         this.id=Integer.parseInt(id.trim());
         this.cname=cname;
         this.pno=pno;

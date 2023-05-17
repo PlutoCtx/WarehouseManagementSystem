@@ -12,8 +12,16 @@ public class Standing_Book {//台账
     private double d_price;
     private double d_sum_price;
 
-    public Standing_Book(int id,String cname,String pno,int bj,int num,double price,double sum_price,int d_num,double d_price,double d_sum_price)
-    {
+    public Standing_Book(int id,
+                         String cname,
+                         String pno,
+                         int bj,
+                         int num,
+                         double price,
+                         double sum_price,
+                         int d_num,
+                         double d_price,
+                         double d_sum_price) {
         this.id=id;
         this.bj=bj;
         this.d_price=d_price;

@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author chent
+ */
 public class Op_Total_Depository {
     public static int update(String pno,int num,double price,double sum_price) {
         String sql="update total_depository set num=?,price=?,sum_price=? where pno=?";

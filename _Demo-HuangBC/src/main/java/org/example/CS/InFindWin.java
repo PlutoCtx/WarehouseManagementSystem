@@ -2,6 +2,9 @@ package org.example.CS;
 
 import javax.swing.*;
 
+/**
+ * @author chent
+ */
 public class InFindWin extends In_Frame implements MenuItemFuction{
     @Override
     public void execute(JMenuItem src) {
@@ -10,7 +13,7 @@ public class InFindWin extends In_Frame implements MenuItemFuction{
         setLocation(100,100);
         setSize(1000,800);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         String[] in=new String[9];
         in[0]="id";

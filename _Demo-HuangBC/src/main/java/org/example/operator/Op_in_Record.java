@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+/**
+ * @author chent
+ */
 public class Op_in_Record {
     public static int insert(In_Record in) {
         String sql="insert into in_record values(null,?,?,?,?,?,?,0,0)";

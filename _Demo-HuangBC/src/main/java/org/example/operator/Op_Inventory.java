@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+/**
+ * @author chent
+ */
 public class Op_Inventory {
     public static Inventory findInventoryRecord(int id) {
         String sql="select * from inventory where id=?";

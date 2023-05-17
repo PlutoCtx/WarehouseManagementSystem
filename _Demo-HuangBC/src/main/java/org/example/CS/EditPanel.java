@@ -5,6 +5,9 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Vector;
 
+/**
+ * @author chent
+ */
 public class EditPanel extends JPanel {
     Vector<MyItem> items;
     public EditPanel() {
@@ -13,8 +16,8 @@ public class EditPanel extends JPanel {
     public void init(String[] in) {
         setLayout(new GridLayout(0,2));
         items=new Vector<MyItem>();
-        for(int i=0;i<in.length;i++) {
-            MyItem myItem=new MyItem(in[i]);
+        for (String s : in) {
+            MyItem myItem = new MyItem(s);
             addMyItem(myItem);
         }
     }

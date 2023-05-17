@@ -9,28 +9,28 @@ public class Main_Frame extends JFrame {
     public JMenuBar menuBar = new JMenuBar();
     public Main_Frame() {
         super("主页面");
+        init();
         setVisible(true);
         setBounds(50, 50, 1100, 900);
-        init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void init() {
-        JMenu myMenu[]=new JMenu[4];
+        JMenu[] myMenu =new JMenu[4];
 
         DBConnect.getConnection();
-        Connection conn= DBConnect.conn;
-        String sql="select * from menu_order";
+        Connection conn = DBConnect.conn;
+        String sql = "select * from menu_order";
         try {
-            PreparedStatement ps=conn.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                String title=rs.getString("title");
-                String code=rs.getString("hh").trim();
-                //System.out.println(code);
-                int len=code.length()/2-1;
-                //System.out.println(len);
+                String title = rs.getString("title");
+                String code = rs.getString("hh").trim();
+
+                int len = code.length()/2-1;
+
                 if(rs.getInt("ismenu")==1) {
-                    myMenu[len]=new JMenu(title);
+                    myMenu[len] = new JMenu(title);
                     if(len==0) {
                         menuBar.add(myMenu[len]);
                     } else {
@@ -38,8 +38,8 @@ public class Main_Frame extends JFrame {
                     }
                 }
                 else {
-                    String className=rs.getString("classname");
-                    MapMenu item=new MapMenu(title, className);
+                    String className = rs.getString("classname");
+                    MapMenu item = new MapMenu(title, className);
                     myMenu[len-1].add(item);
                 }
             }

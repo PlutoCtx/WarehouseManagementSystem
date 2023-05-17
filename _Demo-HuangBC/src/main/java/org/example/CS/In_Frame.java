@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**
+ * @author chent
+ */
 public class In_Frame extends JFrame{
     public JPanel contentPane;
     public EditPanel left;
@@ -29,32 +32,32 @@ public class In_Frame extends JFrame{
     }
     public void addEditPanel() {
         left=new EditPanel();
-        GridBagConstraints gbc_left = new GridBagConstraints();
-        gbc_left.gridheight=6;
-        gbc_left.insets=new Insets(0, 0, 5, 5);
-        gbc_left.fill = GridBagConstraints.BOTH;
-        gbc_left.gridx = 0;
-        gbc_left.gridy = 0;
-        contentPane.add(left, gbc_left);
+        GridBagConstraints gbcLeft = new GridBagConstraints();
+        gbcLeft.gridheight=6;
+        gbcLeft.insets=new Insets(0, 0, 5, 5);
+        gbcLeft.fill = GridBagConstraints.BOTH;
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 0;
+        contentPane.add(left, gbcLeft);
     }
 
     public void addResultPanel(EditPanel editPanel) {
         right=new ResultPanel(editPanel);
-        GridBagConstraints gbc_right = new GridBagConstraints();
-        gbc_right.gridheight=6;
-        gbc_right.insets=new Insets(0, 0, 5, 0);
-        gbc_right.fill = GridBagConstraints.BOTH;
-        gbc_right.gridx = 1;
-        gbc_right.gridy = 0;
-        contentPane.add(right, gbc_right);
+        GridBagConstraints gbcRight = new GridBagConstraints();
+        gbcRight.gridheight=6;
+        gbcRight.insets=new Insets(0, 0, 5, 0);
+        gbcRight.fill = GridBagConstraints.BOTH;
+        gbcRight.gridx = 1;
+        gbcRight.gridy = 0;
+        contentPane.add(right, gbcRight);
     }
     public void addBottomPanel(EditPanel editPanel) {
         bottom=new ButtonPanel(editPanel);
-        GridBagConstraints gbc_bottom = new GridBagConstraints();
-        gbc_bottom.gridwidth = 2;
-        gbc_bottom.fill = GridBagConstraints.BOTH;
-        gbc_bottom.gridx = 0;
-        gbc_bottom.gridy = 6;
-        contentPane.add(bottom, gbc_bottom);
+        GridBagConstraints gbcBottom = new GridBagConstraints();
+        gbcBottom.gridwidth = 2;
+        gbcBottom.fill = GridBagConstraints.BOTH;
+        gbcBottom.gridx = 0;
+        gbcBottom.gridy = 6;
+        contentPane.add(bottom, gbcBottom);
     }
 }

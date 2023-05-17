@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class ButtonPanel extends JPanel implements ActionListener {
     public Map<String,JButton> map=new HashMap<>();
@@ -60,8 +61,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
         setBorder(new TitledBorder(null,"控制栏",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.DEFAULT_POSITION,new Font("宋体",0,20),Color.BLACK));
         //init("clggb");
     }
-    void init(String name)
-    {
+    void init(String name) {
         this.name=name;
         len=editPanel.getItemCount();
 
@@ -74,13 +74,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
         getrs();
     }
-    public void addButton(String s)
-    {
+    public void addButton(String s) {
         add(map.get(s));
         map.get(s).addActionListener(this);
     }
-    public void write(String s[])
-    {
+    public void write(String s[]) {
         for(int i=0;i<len;i++) {
             editPanel.getTextField(i).setText(s[i]);
         }
@@ -99,62 +97,41 @@ public class ButtonPanel extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==next)
-        {
+        if(e.getSource()==next) {
             write(getnextval());
-        }
-        else if(e.getSource()==pre)
-        {
+        } else if(e.getSource()==pre) {
             write(getpreval());
-        }
-        else if(e.getSource()==last)
-        {
+        } else if(e.getSource()==last) {
             write(getlastval());
-        }
-        else if(e.getSource()==first)
-        {
+        } else if(e.getSource()==first) {
             write(getfirstval());
-        }
-        else if(e.getSource()==update)
-        {
+        } else if(e.getSource()==update) {
             getrs();
-        }
-        else if(e.getSource()==inRecordInsert)
-        {
+        } else if(e.getSource()==inRecordInsert) {
             insert_In_Record();
-        }
-        else if(e.getSource()==inRecordCheck)
-        {
+        } else if(e.getSource()==inRecordCheck) {
             check_In_Record();
-        }
-        else if(e.getSource()==inRecordExecute)
-        {
+        } else if(e.getSource()==inRecordExecute) {
             Excute_In_Record();
-        }
-        else if(e.getSource()==inRecordFind) {
+        } else if(e.getSource()==inRecordFind) {
             try {
                 inRecordFind();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-        }
-        else if(e.getSource()==outRecordInsert) {
+        } else if(e.getSource()==outRecordInsert) {
             insert_out_Record();
-        }
-        else if(e.getSource()==outRecordCheck) {
+        } else if(e.getSource()==outRecordCheck) {
             check_out_Record();
-        }
-        else if(e.getSource()==outRecordExecute) {
+        } else if(e.getSource()==outRecordExecute) {
             Excute_out_Record();
-        }
-        else if(e.getSource()==outRecordFind) {
+        } else if(e.getSource()==outRecordFind) {
             try {
                 outRecordFind();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-        }
-        else if(e.getSource()==find) {
+        } else if(e.getSource()==find) {
             try {
                 find();
             } catch (Exception e1) {
@@ -163,11 +140,9 @@ public class ButtonPanel extends JPanel implements ActionListener {
         }
     }
 
-    public String[] getnextval()
-    {
+    public String[] getnextval() {
         String res[]=new String[len];
-        try
-        {
+        try {
             rs.next();
             if(rs.isAfterLast()) {
                 rs.last();
@@ -175,18 +150,14 @@ public class ButtonPanel extends JPanel implements ActionListener {
             for(int i=0;i<len;i++) {
                 res[i]=rs.getString(i+1);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
-    public String[] getpreval()
-    {
+    public String[] getpreval() {
         String res[]=new String[len];
-        try
-        {
+        try {
             rs.previous();
             if(rs.isBeforeFirst()) {
                 rs.first();
@@ -194,16 +165,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
             for(int i=0;i<len;i++) {
                 res[i]=rs.getString(i+1);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
-    public String[] getfirstval()
-    {
-        String res[]=new String[len];
+    public String[] getfirstval() {
+        String[] res =new String[len];
         try
         {
             rs.first();
@@ -217,71 +185,54 @@ public class ButtonPanel extends JPanel implements ActionListener {
         }
         return res;
     }
-    public String[] getlastval()
-    {
-        String res[]=new String[len];
-        try
-        {
+    public String[] getlastval() {
+        String[] res =new String[len];
+        try {
             rs.last();
             for(int i=0;i<len;i++) {
                 res[i]=rs.getString(i+1);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
     //入库操作
-    public In_Record getIn_Recordval()
-    {
-        String res[] = new String[len];
-        for(int i=0;i<len;i++)
-        {
+    public In_Record getIn_Recordval() {
+        String[] res = new String[len];
+        for(int i=0;i<len;i++) {
             res[i]=editPanel.getTextField(i).getText();
         }
-        In_Record in=new In_Record(res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]);
+        In_Record in = new In_Record(res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7], res[8]);
         return in;
     }
-    public void insert_In_Record()
-    {
+    public void insert_In_Record() {
         try{
             In_Record in=getIn_Recordval();
             Op_in_Record.insert(in);
             JOptionPane.showMessageDialog(new JPanel(),"制单成功");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(new JPanel(),"制单失败");
             e.printStackTrace();
         }
     }
-    public void check_In_Record()
-    {
+    public void check_In_Record() {
         try{
             In_Record in=getIn_Recordval();
             String cname=in.getCname();
             String pno=in.getPno();
-            if(Op_Depository.findDepositoryRecord(cname,pno)==null)
-            {
+            if(Op_Depository.findDepositoryRecord(cname,pno)==null) {
                 Op_Depository.insert(cname,pno);
             }
-            if(Op_Total_Depository.findTotalDepositoryRecord(pno)==null)
-            {
+            if(Op_Total_Depository.findTotalDepositoryRecord(pno)==null) {
                 Op_Total_Depository.insert(pno);
             }
-            if(Op_in_Record.updateCheck(in)!=0)
-            {
+            if(Op_in_Record.updateCheck(in)!=0) {
                 JOptionPane.showMessageDialog(new JPanel(),"审核成功");
-            }
-            else
-            {
+            } else {
                 JOptionPane.showMessageDialog(new JPanel(),"该记录已经审核");
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(new JPanel(),"审核失败");
             e.printStackTrace();
         }
@@ -296,11 +247,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
     }
 
     public Out_Record getOut_RecordVal() {
-        String value[]=new String[len];
+        String[] value =new String[len];
         for(int i=0;i<len;i++) {
             value[i]=editPanel.getTextField(i).getText();
         }
-        Out_Record out=new Out_Record(value[0], value[1], value[2], value[3], value[4], value[5],
+        Out_Record out = new Out_Record(value[0], value[1], value[2], value[3], value[4], value[5],
                 value[6], value[7], value[8]);
         return out;
     }
@@ -324,18 +275,15 @@ public class ButtonPanel extends JPanel implements ActionListener {
             Out_Record out=getOut_RecordVal();
             String cname=out.getCname();
             String pno=out.getPno();
-            if(Op_Depository.findDepositoryRecord(cname,pno)==null)
-            {
+            if(Op_Depository.findDepositoryRecord(cname,pno)==null) {
                 Op_Depository.insert(cname,pno);
             }
-            if(Op_Total_Depository.findTotalDepositoryRecord(pno)==null)
-            {
+            if(Op_Total_Depository.findTotalDepositoryRecord(pno)==null) {
                 Op_Total_Depository.insert(pno);
             }
             if(Op_out_Record.updateCheck(out)!=0) {
                 JOptionPane.showMessageDialog(new JPanel(),"审核成功");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(new JPanel(),"该出库记录已审核，无需再次审核");
             }
         } catch (Exception e) {
@@ -353,21 +301,21 @@ public class ButtonPanel extends JPanel implements ActionListener {
         }
     }
     public void inRecordFind() throws Exception {
-        String date=JOptionPane.showInputDialog(new JPanel(),"输入日期","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        String date = JOptionPane.showInputDialog(new JPanel(),"输入日期","输入对话框",JOptionPane.PLAIN_MESSAGE);
         String wname=JOptionPane.showInputDialog(new JPanel(),"输入仓库","输入对话框",JOptionPane.PLAIN_MESSAGE);
         String pno=JOptionPane.showInputDialog(new JPanel(),"输入货号","输入对话框",JOptionPane.PLAIN_MESSAGE);
         PreparedStatement ps=null;
         if(wname.equals("")) {
-            String sql="select * from "+name+" where pno=?";
-            Connection conn= DBConnect.conn;
-            ps=conn.prepareStatement(sql);
+            String sql = "select * from " + name + " where pno = ?";
+            Connection conn = DBConnect.conn;
+            ps = conn.prepareStatement(sql);
             ps.setString(1, pno);
         }
         else {
-            String sql="select * from "+name+" where pno=? and cname=?";
-            System.out.println(sql);
-            Connection conn= DBConnect.conn;
-            ps=conn.prepareStatement(sql);
+            String sql = "select * from " + name + " where pno = ? and cname = ?";
+            Logger.getGlobal().info(sql);
+            Connection conn = DBConnect.conn;
+            ps = conn.prepareStatement(sql);
             ps.setString(1, pno);
             ps.setString(2, wname);
         }
@@ -386,25 +334,24 @@ public class ButtonPanel extends JPanel implements ActionListener {
     }
 
     public void outRecordFind() throws Exception {
-        String date=JOptionPane.showInputDialog(new JPanel(),"输入日期","输入对话框",JOptionPane.PLAIN_MESSAGE);
-        String wname=JOptionPane.showInputDialog(new JPanel(),"输入仓库","输入对话框",JOptionPane.PLAIN_MESSAGE);
-        String pno=JOptionPane.showInputDialog(new JPanel(),"输入货号","输入对话框",JOptionPane.PLAIN_MESSAGE);
-        PreparedStatement ps=null;
+        String date = JOptionPane.showInputDialog(new JPanel(),"输入日期","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        String wname = JOptionPane.showInputDialog(new JPanel(),"输入仓库","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        String pno = JOptionPane.showInputDialog(new JPanel(),"输入货号","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        PreparedStatement ps = null;
         if(wname.equals("")) {
             String sql="select * from "+name+" where pno = ?";
             Connection conn= DBConnect.conn;
             ps=conn.prepareStatement(sql);
             ps.setString(1, pno);
-        }
-        else {
-            String sql="select * from " + name +" where pno=? and cname=?";
-            Connection conn= DBConnect.conn;
-            ps=conn.prepareStatement(sql);
+        } else {
+            String sql = "select * from " + name +" where pno=? and cname=?";
+            Connection conn = DBConnect.conn;
+            ps = conn.prepareStatement(sql);
             ps.setString(1, pno);
             ps.setString(2, wname);
         }
-        rs=ps.executeQuery();
-        int f=1;
+        rs = ps.executeQuery();
+        int f = 1;
         while(rs.next()) {
             f = 0;
             for(int i=0;i<editPanel.getItemCount();i++) {
@@ -418,33 +365,33 @@ public class ButtonPanel extends JPanel implements ActionListener {
     }
 
     public void find() throws Exception {
-        String pno=JOptionPane.showInputDialog(new JPanel(),"输入货号","输入对话框",JOptionPane.PLAIN_MESSAGE);
-        String wname=JOptionPane.showInputDialog(new JPanel(),"输入仓库","输入对话框",JOptionPane.PLAIN_MESSAGE);
-        PreparedStatement ps=null;
+        String pno = JOptionPane.showInputDialog(new JPanel(),"输入货号","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        String wname = JOptionPane.showInputDialog(new JPanel(),"输入仓库","输入对话框",JOptionPane.PLAIN_MESSAGE);
+        PreparedStatement ps = null;
         if(wname.equals("")) {
-            String sql="select * from total_depository where pno=?";
-            Connection conn= DBConnect.conn;
-            ps=conn.prepareStatement(sql);
+            String sql = "select * from total_depository where pno = ?";
+            Connection conn = DBConnect.conn;
+            ps = conn.prepareStatement(sql);
             ps.setString(1, pno);
         } else {
-            String sql="select * from "+name+" where pno=? and cname=?";
-            Connection conn= DBConnect.conn;
-            ps=conn.prepareStatement(sql);
+            String sql = "select * from "+name+" where pno = ? and cname = ?";
+            Connection conn = DBConnect.conn;
+            ps = conn.prepareStatement(sql);
             ps.setString(1, pno);
             ps.setString(2, wname);
         }
-        rs=ps.executeQuery();
-        int f=1;
+        rs = ps.executeQuery();
+        int f = 1;
         while(rs.next()) {
-            f=0;
-            for(int i=0;i<editPanel.getItemCount();i++) {
+            f = 0;
+            for(int i = 0;i<editPanel.getItemCount();i++) {
                 if(wname.equals("")) {
-                    if(i==6) {
+                    if(i == 6) {
                         break;
                     }
-                    if(i==1) {
+                    if(i == 1) {
                         continue;
-                    } else if(i>1) {
+                    } else if(i > 1) {
                         editPanel.getTextField(i).setText(rs.getString(i));
                     } else {
                         editPanel.getTextField(i).setText(rs.getString(i+1));

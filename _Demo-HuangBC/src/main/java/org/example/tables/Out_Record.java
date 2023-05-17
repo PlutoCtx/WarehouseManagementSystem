@@ -1,5 +1,8 @@
 package org.example.tables;
 
+/**
+ * @author chent
+ */
 public class Out_Record {//领料 退料 调拨 盘点
     private int id;
     private String cname;
@@ -11,8 +14,15 @@ public class Out_Record {//领料 退料 调拨 盘点
     private int vs;
     private int checked;
 
-    public Out_Record(int id,String cname,String pno,int num,double price,double sum_price,int bj,int vs,int checked)
-    {
+    public Out_Record(int id,
+                      String cname,
+                      String pno,
+                      int num,
+                      double price,
+                      double sum_price,
+                      int bj,
+                      int vs,
+                      int checked) {
         this.id=id;
         this.cname=cname;
         this.pno=pno;
@@ -23,8 +33,15 @@ public class Out_Record {//领料 退料 调拨 盘点
         this.vs=vs;
         this.checked=checked;
     }
-    public Out_Record(String id,String cname,String pno,String num,String price,String sum_price,String bj,String vs,String checked)
-    {
+    public Out_Record(String id,
+                      String cname,
+                      String pno,
+                      String num,
+                      String price,
+                      String sum_price,
+                      String bj,
+                      String vs,
+                      String checked) {
         this.id=Integer.parseInt(id);
         this.cname=cname;
         this.pno=pno;

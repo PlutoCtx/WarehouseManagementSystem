@@ -11,6 +11,7 @@ import org.example.operator.Op_out_Record;
 import org.example.tool.DBConnect;
 
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 import javax.swing.*;
@@ -19,9 +20,7 @@ public class Delivery_sev {
 
     public static void Delivery(int id) {
 
-        //Get_Connect.getConnection();
-
-        Out_Record out= Op_out_Record.findOut_RecordById(id);
+        Out_Record out = Op_out_Record.findOut_RecordById(id);
         //如果无该记录，则返回
         if(out==null) {
             return;
@@ -31,18 +30,18 @@ public class Delivery_sev {
             JOptionPane.showMessageDialog(new JPanel(),"该记录不是领料或退料记录，无法处理");
             return;
         }
-        if(out.getChecked()==0) {
+        if(out.getChecked() == 0) {
             JOptionPane.showMessageDialog(new JPanel(),"该记录尚未通过审核，无法处理");
             return;
         }
-        if(out.getVs()==1) {
+        if(out.getVs() == 1) {
             JOptionPane.showMessageDialog(new JPanel(),"该出库记录已处理过，无需再处理");
             return;
         }
 
-        Depository dRecord= Op_Depository.findDepositoryRecord(out.getCname(), out.getPno());
-        if(dRecord==null) {
-            dRecord=new Depository(0, out.getCname(), out.getPno(), out.getNum(),
+        Depository dRecord = Op_Depository.findDepositoryRecord(out.getCname(), out.getPno());
+        if(dRecord == null) {
+            dRecord = new Depository(0, out.getCname(), out.getPno(), out.getNum(),
                     out.getPrice(), out.getSum_price());
         }
         else {
@@ -53,7 +52,7 @@ public class Delivery_sev {
             try {
                 dRecord.setPrice(dRecord.getSum_price()/dRecord.getNum());
             } catch (Exception e) {
-                System.out.println("PurchaseService.purchase().本仓除0错误");
+                Logger.getGlobal().info("PurchaseService.purchase().本仓除0错误");
                 e.printStackTrace();
             }
         }
@@ -68,7 +67,7 @@ public class Delivery_sev {
             try {
                 tRecord.setPrice(tRecord.getSum_price()/tRecord.getNum());
             } catch (Exception e) {
-                System.out.println("PurchaseService.purchase().总仓除0错误");
+                Logger.getGlobal().info("PurchaseService.purchase().总仓除0错误");
                 e.printStackTrace();
             }
         }
@@ -77,37 +76,40 @@ public class Delivery_sev {
         try {
             DBConnect.conn.setAutoCommit(false);
             //更新vis
-            int res1=Op_out_Record.updateVis(out.getId(), 1);
-            if(res1==0) {
+            int res1 = Op_out_Record.updateVis(out.getId(), 1);
+            if(res1 == 0) {
                 DBConnect.conn.rollback();		//更新vis失败回滚
                 return;
             }
 
             //更新本仓
-            String s="  ";
-            System.out.println(dRecord.getCname()+s+ dRecord.getPno()+s+ dRecord.getNum()
-                    +s+ dRecord.getPrice()+s+dRecord.getSum_price());
+            String s = "  ";
+            Logger.getGlobal().info(dRecord.getCname()+ s+ dRecord.getPno()+ s+ dRecord.getNum() + s+ dRecord.getPrice()+ s+ dRecord.getSum_price());
             int res2=Op_Depository.update(dRecord.getCname(), dRecord.getPno(), dRecord.getNum()
                     , dRecord.getPrice(), dRecord.getSum_price());
-            if(res2==0) {
-                System.out.println("res2为0");
+            if(res2 == 0) {
+                Logger.getGlobal().info("res2为0");
                 DBConnect.conn.rollback();
                 return;
             }
 
             //更新总仓
-            int res3=Op_Total_Depository.update(tRecord.getPno(), tRecord.getNum(),
-                    tRecord.getPrice(), tRecord.getSum_price());
-            if(res3==0) {
+            int res3 = Op_Total_Depository.update(
+                    tRecord.getPno(),
+                    tRecord.getNum(),
+                    tRecord.getPrice(),
+                    tRecord.getSum_price()
+            );
+            if(res3 == 0) {
                 DBConnect.conn.rollback();
                 return;
             }
 
             //插入台账
-            int res4= Op_Standing_Book.insert(new Standing_Book(0, out.getCname(), out.getPno(), out.getBj(),
+            int res4 = Op_Standing_Book.insert(new Standing_Book(0, out.getCname(), out.getPno(), out.getBj(),
                     out.getNum(), out.getPrice(), out.getSum_price(), dRecord.getNum(), dRecord.getPrice(),
                     dRecord.getSum_price()));
-            if(res4==0) {
+            if(res4 == 0) {
                 DBConnect.conn.rollback();
                 return;
             }
@@ -117,7 +119,7 @@ public class Delivery_sev {
             JOptionPane.showMessageDialog(new JPanel(),"材料出库成功");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(new JPanel(),"材料出库事务处理异常");
-            System.out.println("");
+
             try {
                 DBConnect.conn.rollback();
             } catch (SQLException e1) {

@@ -1,13 +1,15 @@
 package org.example.tables;
 
+/**
+ * @author chent
+ */
 public class Inventory {//盘点
     private int id;
     private String cname;
     private String pno;
     private int num;
 
-    public Inventory(int id,String cname,String pno,int num)
-    {
+    public Inventory(int id,String cname,String pno,int num) {
         this.id=id;
         this.cname=cname;
         this.pno=pno;
